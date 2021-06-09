@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-xxxl-12 col-xxl-12 col-lg-12 col-md-12" style="padding-bottom: 15px;">
+    <button (click)="openGraph()" nbButton>Relations</button>
+    <br/>
+  </div>
+  <br/>
+  <div class="col-xxxl-12 col-xxl-12 col-lg-12 col-md-12">
+    <ng-template #contentTemplate>
+      <div (click)="details(options)" [options]="options | async" echarts style="height:700px;width:1388px;">
+      </div>
+    </ng-template>
+  </div>
+  <div class="col-xxxl-12 col-xxl-12 col-lg-12 col-md-12">
+    <ng2-smart-table (deleteConfirm)="onDeleteConfirm($event)" (userRowSelect)="onRowSelect($event)" [settings]="settings"
+                     [source]="source" (custom)="onCustomAction($event)">
+    </ng2-smart-table>
+  </div>
+  <ng-template #dialog let-data let-ref="dialogRef">
+    <nb-card>
+      <nb-card-header>Share FINSTIX object</nb-card-header>
+      <nb-card-body>
+
+        "type": "x-risk",
+        "id": "x-risk--8c6af861-7b20-41ef-9b59-6344fd872a8f",
+        "name": "custom risk test",
+        "description": "the risk description",
+        "subtype": "propagated",
+        "x_organization": "x-organization--83112ad7-032a-4791-a7b9-48efef029f5d",
+        "reference": "x-service--8c6af861-7b20-41ef-9b59-6344fd872a8f",
+        "entry_point": "x-asset--8c6af861-7b20-41ef-9b59-6344fd872a8f",
+        "domain": "Cyber",
+        "total_risk": "M",
+        "created": "2016-08-08T15:50:10.983Z",
+        "modified": "2016-08-08T15:50:10.983Z",
+        "service_refs": ["x-service--8c6af861-7b20-41ef-9b59-6344fd872a8f"],
+        "asset_refs": ["x-asset--8c6af861-7b20-41ef-9b59-6344fd872a8f"],
+        "vuln_refs":
+        ["vulnerability--8c6af861-7b20-41ef-9b59-6344fd872a8f","vulnerability--996af861-7b20-41ef-9b59-6344fd872a99"],
+        "threat_refs":
+        ["x-threat--8c6af861-7b20-41ef-9b59-6344fd872a8f","x-threat--996af861-7b20-41ef-9b59-6344fd872a99"]
+
+      </nb-card-body>
+      <nb-card-footer>
+        <button (click)="ref.close()" nbButton>Close Dialog</button>
+      </nb-card-footer>
+    </nb-card>
+  </ng-template>
+
+</div>
+

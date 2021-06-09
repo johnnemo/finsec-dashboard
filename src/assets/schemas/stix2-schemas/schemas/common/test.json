@@ -1,0 +1,294 @@
+{
+  "id": "../common/core.json",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "core",
+  "description": "Common properties and behavior across all STIX Domain Objects and STIX Relationship Objects.",
+  "type": "object",
+  "properties": {
+    "type": {
+      "title": "type",
+      "type": "string",
+      "pattern": "^\\-?[a-zA-Z0-9]+(-[a-zA-Z0-9]+)*\\-?$",
+      "minLength": 3,
+      "maxLength": 250,
+      "description": "The type property identifies the type of STIX Object (SDO, Relationship Object, etc). The value of the type field MUST be one of the types defined by a STIX Object (e.g., indicator).",
+      "not": {
+        "enum": [
+          "incident",
+          "infrastructure"
+        ]
+      }
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]+[a-z0-9]--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+      "description": "The id property universally and uniquely identifies this object."
+    },
+    "created_by_ref": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]+[a-z0-9]--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+      "description": "The ID of the Source object that describes who created this object."
+    },
+    "labels": {
+      "type": "array",
+      "description": "The labels property specifies a set of classifications.",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "created": {
+      "description": "The created property represents the time at which the first version of this object was created. The timstamp value MUST be precise to the nearest millisecond.",
+      "type": "string",
+      "pattern": "^[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9]|60)(\\.[0-9]+)?Z$"
+    },
+    "modified": {
+      "description": "The modified property represents the time that this particular version of the object was created. The timstamp value MUST be precise to the nearest millisecond.",
+      "type": "string",
+      "pattern": "^[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9]|60)(\\.[0-9]+)?Z$"
+    },
+    "revoked": {
+      "type": "boolean",
+      "description": "The revoked property indicates whether the object has been revoked."
+    },
+    "external_references": {
+      "type": "array",
+      "description": "A list of external references which refers to non-STIX information.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "A human readable description"
+          },
+          "url": {
+            "type": "string",
+            "pattern": "^([a-zA-Z][a-zA-Z0-9+.-]*):(?:\\/\\/((?:(?=((?:[a-zA-Z0-9-._~!$&'()*+,;=:]|%[0-9a-fA-F]{2})*))(\\3)@)?(?=((?:\\[?(?:::[a-fA-F0-9]+(?::[a-fA-F0-9]+)?|(?:[a-fA-F0-9]+:)+(?::[a-fA-F0-9]+)+|(?:[a-fA-F0-9]+:)+(?::|(?:[a-fA-F0-9]+:?)*))\\]?)|(?:[a-zA-Z0-9-._~!$&'()*+,;=]|%[0-9a-fA-F]{2})*))\\5(?::(?=(\\d*))\\6)?)(\\/(?=((?:[a-zA-Z0-9-._~!$&'()*+,;=:@\\/]|%[0-9a-fA-F]{2})*))\\8)?|(\\/?(?!\\/)(?=((?:[a-zA-Z0-9-._~!$&'()*+,;=:@\\/]|%[0-9a-fA-F]{2})*))\\10)?)(?:\\?(?=((?:[a-zA-Z0-9-._~!$&'()*+,;=:@\\/?]|%[0-9a-fA-F]{2})*))\\11)?(?:#(?=((?:[a-zA-Z0-9-._~!$&'()*+,;=:@\\/?]|%[0-9a-fA-F]{2})*))\\12)?$",
+            "description": "A URL reference to an external resource."
+          },
+          "hashes": {
+            "type": "object",
+            "patternProperties": {
+              "^[a-zA-Z0-9_-]{3,256}$": {
+                "type": "string",
+                "description": "Custom hash key"
+              },
+              "^MD5$": {
+                "type": "string",
+                "description": "Specifies the MD5 message digest algorithm.",
+                "pattern": "^[a-fA-F0-9]{32}$"
+              },
+              "^MD6$": {
+                "type": "string",
+                "description": "Specifies the MD6 message digest algorithm.",
+                "pattern": "^[a-fA-F0-9]{32}|[a-fA-F0-9]{40}|[a-fA-F0-9]{56}|[a-fA-F0-9]{64}|[a-fA-F0-9]{96}|[a-fA-F0-9]{128}$"
+              },
+              "^RIPEMD-160$": {
+                "type": "string",
+                "description": "Specifies the RIPEMD\u00ad-160 (R​ACE​ Integrity Primitives Evaluation Message Digest)​ cryptographic hash function.",
+                "pattern": "^[a-fA-F0-9]{40}$"
+              },
+              "^SHA-1$": {
+                "type": "string",
+                "description": "Specifies the SHA\u00ad-1 (secure-\u00adhash algorithm 1) cryptographic hash function.",
+                "pattern": "^[a-fA-F0-9]{40}$"
+              },
+              "^SHA-224$": {
+                "type": "string",
+                "description": "Specifies the SHA-\u00ad224 cryptographic hash function (part of the SHA\u00ad2 family).",
+                "pattern": "^[a-fA-F0-9]{56}$"
+              },
+              "^SHA-256$": {
+                "type": "string",
+                "description": "Specifies the SHA-\u00ad256 cryptographic hash function (part of the SHA\u00ad2 family).",
+                "pattern": "^[a-fA-F0-9]{64}$"
+              },
+              "^SHA-384$": {
+                "type": "string",
+                "description": "Specifies the SHA-\u00ad384 cryptographic hash function (part of the SHA\u00ad2 family).",
+                "pattern": "^[a-fA-F0-9]{96}$"
+              },
+              "^SHA-512$": {
+                "type": "string",
+                "description": "Specifies the SHA-\u00ad512 cryptographic hash function (part of the SHA\u00ad2 family).",
+                "pattern": "^[a-fA-F0-9]{128}$"
+              },
+              "^SHA3-224$": {
+                "type": "string",
+                "description": "Specifies the SHA3-224 cryptographic hash function.",
+                "pattern": "^[a-fA-F0-9]{56}$"
+              },
+              "^SHA3-256$": {
+                "type": "string",
+                "description": "Specifies the SHA3-256 cryptographic hash function.",
+                "pattern": "^[a-fA-F0-9]{64}$"
+              },
+              "^SHA3-384$": {
+                "type": "string",
+                "description": "Specifies the SHA3-384 cryptographic hash function.",
+                "pattern": "^[a-fA-F0-9]{96}$"
+              },
+              "^SHA3-512$": {
+                "type": "string",
+                "description": "Specifies the SHA3-512 cryptographic hash function.",
+                "pattern": "^[a-fA-F0-9]{128}$"
+              },
+              "^ssdeep$": {
+                "type": "string",
+                "description": "Specifies the ssdeep fuzzy hashing algorithm.",
+                "pattern": "^[a-zA-Z0-9/+:.]{1,128}$"
+              },
+              "^WHIRLPOOL$": {
+                "type": "string",
+                "description": "Specifies the whirlpool cryptographic hash function",
+                "pattern": "^[a-fA-F0-9]{128}$"
+              }
+            },
+            "additionalProperties": false
+          },
+          "source_name": {
+            "type": "string",
+            "description": "The source within which the external-reference is defined (system, registry, organization, etc.)",
+            "pattern": "^cve$"
+          },
+          "external_id": {
+            "type": "string",
+            "description": "An identifier for the external reference content.",
+            "pattern": "^CVE-\\d{4}-(0\\d{3}|[1-9]\\d{3,})$"
+          }
+        },
+        "required": [
+          "source_name",
+          "external_id"
+        ]
+      },
+      "minItems": 1
+    },
+    "object_marking_refs": {
+      "type": "array",
+      "description": "The list of marking-definition objects to be applied to this object.",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9][a-z0-9-]+[a-z0-9]--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+      },
+      "minItems": 1
+    },
+    "granular_markings": {
+      "type": "array",
+      "description": "The set of granular markings that apply to this object.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "selectors": {
+            "type": "array",
+            "description": "A list of selectors for content contained within the STIX object in which this property appears.",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z0-9_-]{3,250}(\\.(\\[\\d+\\]|[a-z0-9_-]{1,250}))*$"
+            },
+            "minItems": 1
+          },
+          "marking_ref": {
+            "allOf": [
+              {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9-]+[a-z0-9]--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+              },
+              {
+                "pattern": "^marking-definition--",
+                "description": "The marking_ref property specifies the ID of the marking-definition object that describes the marking."
+              }
+            ]
+          }
+        }
+      },
+      "minItems": 1
+    }
+  },
+  "patternProperties": {
+    "^[a-z0-9_]{3,250}$": {
+      "anyOf": [
+        {
+          "type": "array",
+          "minItems": 1
+        },
+        {
+          "type": "string"
+        },
+        {
+          "type": "integer"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "object"
+        }
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "not": {
+    "anyOf": [
+      {
+        "required": [
+          "confidence"
+        ]
+      },
+      {
+        "required": [
+          "severity"
+        ]
+      },
+      {
+        "required": [
+          "action"
+        ]
+      },
+      {
+        "required": [
+          "usernames"
+        ]
+      },
+      {
+        "required": [
+          "phone_numbers"
+        ]
+      },
+      {
+        "required": [
+          "addresses"
+        ]
+      },
+      {
+        "required": [
+          "first_seen_precision"
+        ]
+      },
+      {
+        "required": [
+          "last_seen_precision"
+        ]
+      },
+      {
+        "required": [
+          "valid_from_precision"
+        ]
+      },
+      {
+        "required": [
+          "valid_until_precision"
+        ]
+      }
+    ]
+  },
+  "required": [
+    "type",
+    "id",
+    "created",
+    "modified"
+  ]
+}

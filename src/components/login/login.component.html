@@ -1,0 +1,25 @@
+<div class="login-page">
+  <div class="row justify-content-md-center">
+    <div class="col-md-4">
+      <img class="user-avatar" src="assets/images/logo.png"  alt="" width="150px"/>
+      <h1>FINSEC DASHBOARD</h1>
+      <div *ngIf="errorMessages" class="errors">{{errorMessages}}</div>
+      <form [formGroup]="loginForm" method="POST" role="form">
+        <div class="form-content">
+          <div class="form-group">
+            <input class="form-control input-underline input-lg" formControlName="username" type="text">
+          </div>
+          <div class="form-group">
+            <input class="form-control input-underline input-lg" formControlName="password" type="password">
+          </div>
+        </div>
+        <button (click)="login()" [disabled]="loginForm.invalid" class="btn rounded-btn" type="submit">Log in</button>
+<!--        <a (click)="register()" class="btn rounded-btn">Register</a>-->
+      </form>
+      <div class="errors">
+        <div *ngIf="formErrors.name">{{formErrors.name}}</div>
+        <div *ngIf="formErrors.password">{{formErrors.password}}</div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,454 @@
+{
+  "id": "../sdos/x-organization.json",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "x-organization",
+  "description": "Object used to represent an organization.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "../../../stix2-schemas/schemas/common/core.json"
+    },
+    {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "It MUST be the literal `x-organization`.",
+          "enum": [
+            "x-organization"
+          ]
+        },
+        "id": {
+          "title": "id",
+          "pattern": "^x-organization--"
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the organization."
+        },
+        "description": {
+          "type": "string",
+          "description": "A description that provides more details and context about the organization."
+        },
+        "x_organization": {
+          "type": "string",
+          "description": "Reference to the organization which is owner of the information contained in the object.",
+          "pattern": "^x-organization--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+        },
+        "contacts": {
+          "type": "array",
+          "description": "It's a list of people that should be reached out in certain circumstances, e.g. a regulation violation.",
+          "items": {
+            "type": "string",
+            "pattern": "^identity--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+          }
+        },
+        "subtype": {
+          "type": "string",
+          "description": "The list of sectors the organization belongs to. Open Vocab - industry-sector-ov.",
+          "minItems": 1
+        },
+        "domain": {
+          "type": "string",
+          "description": "Domain can be Cyber, Physical or Hybrid.",
+          "enum": [
+            "Cyber",
+            "Physical",
+            "Hybrid"
+          ]
+        },
+        "datatype": {
+          "type": "string",
+          "description": "Datatype can be Model or Instance. Model indicates that the object is a model that can be used as a basis for the analytics. Instance is used when the object is generated at run-time.",
+          "enum": [
+            "Model",
+            "Instance"
+          ]
+        },
+        "reference": {
+          "type": "string",
+          "description": "It refers to a root object.",
+          "pattern": "^x-root--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+        },
+        "model_ref": {
+          "type": "string",
+          "description": "It is used by an organization with datatype instance to refer to the related model.",
+          "pattern": "^x-[a-z0-9][a-z0-9-]+[a-z0-9]--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+        },
+        "country": {
+          "type": "string",
+          "description": "Identifies the country in which the organization is established."
+        },
+        "city": {
+          "type": "string",
+          "description": "The organization city headquarter."
+        },
+        "postal_code": {
+          "type": "string",
+          "description": "The organization postal code."
+        },
+        "address": {
+          "type": "string",
+          "description": "The organization address."
+        },
+        "company_profile": {
+          "type": "object",
+          "description": "Information coming from the organization profile (see D4.4 for more details).",
+          "properties": {
+            "head_office": {
+              "type": "number",
+              "description": "Related to Q1/33: Where are your company Head Offices located?",
+              "enum": [
+                4,
+                6,
+                10
+              ]
+            },
+            "legal_jurisdiction": {
+              "type": "number",
+              "description": "Related to Q2/33: Does your company operate in multiple legal jurisdictions?",
+              "enum": [
+                3,
+                5,
+                10
+              ]
+            },
+            "sensitivity": {
+              "type": "number",
+              "description": "Related to Q3/33: Indicate the sensitivity level of the information your company maintains and process, on average",
+              "enum": [
+                0,
+                3,
+                5
+              ]
+            },
+            "sec_info_policy": {
+              "type": "number",
+              "description": "Related to Q4/33: Does your organization have any Security information policy in place?",
+              "enum": [
+                0,
+                5
+              ]
+            },
+            "compliance": {
+              "type": "number",
+              "description": "Related to Q5/33: Is your organization compliant with all legal and regulatory requirements (e.g. GDPR, industry regulations, etc.)?",
+              "enum": [
+                0,
+                30
+              ]
+            },
+            "info_sec_controls": {
+              "type": "number",
+              "description": "Related to Q6/33: Does your company perform periodic information Security controls and report them to executive management?",
+              "enum": [
+                0,
+                5
+              ]
+            },
+            "sec_train": {
+              "type": "number",
+              "description": "Related to Q7/33: Does your company have any IT security training program for emplyees?",
+              "enum": [
+                0,
+                10
+              ]
+            },
+            "physical_perimeter": {
+              "type": "number",
+              "description": "Related to Q8/33: Is your organization physical perimeter properly protected?",
+              "enum": [
+                0,
+                15
+              ]
+            },
+            "access_control": {
+              "type": "number",
+              "description": "Related to Q9/33: How the control access to the IT systems of the company is enforced?",
+              "enum": [
+                0,
+                3,
+                5,
+                10
+              ]
+            },
+            "user_access_level": {
+              "type": "number",
+              "description": "Related to Q10/33: Are all users access levels based on their individual role profile and responsibilities?",
+              "enum": [
+                0,
+                10
+              ]
+            },
+            "it_contracts": {
+              "type": "number",
+              "description": "Related to Q11/33: Do contracts with IT services providers (if any) contain information Security requirements?",
+              "enum": [
+                0,
+                10
+              ]
+            },
+            "remote_access": {
+              "type": "number",
+              "description": "Related to Q12/33: Are the remote accesses to your organization network protected and controlled?",
+              "min":[
+                0,
+                15
+              ]
+            },
+            "in_transit_protection": {
+              "type": "number",
+              "description": "Related to Q13/33: Is in-transit confidential data protected and encrypted?",
+              "enum": [
+                0,
+                15
+              ]
+            },
+            "removable_media": {
+              "type": "number",
+              "description": "Related to Q14/33: Does the use of removable media follew established security procedures?",
+              "enum": [
+                0,
+                10
+              ]
+            },
+            "activity_logs": {
+              "type": "number",
+              "description": "Related to Q15/33: Are the activity logs of privileged IT users monitored and impossible to overwrite?",
+              "enum": [
+                0,
+                20
+              ]
+            },
+            "system_availability": {
+              "type": "number",
+              "description": "Related to Q16/33: Does your organization maintain a proper capacity ensuring system availability?",
+              "enum": [
+                0,
+                10
+              ]
+            },
+            "test_environment": {
+              "type": "number",
+              "description": "Related to Q17/33: Are the IT development and testing environments separated from the production systems?",
+              "enum": [
+                0,
+                10
+              ]
+            },
+            "change_process": {
+              "type": "number",
+              "description": "Related to Q18/33: Is there any change management process in place to address information security issues?",
+              "enum": [
+                0,
+                15
+              ]
+            },
+            "backups": {
+              "type": "number",
+              "description": "Related to Q19/33: Are backups performed, maintained and periodically tested?",
+              "enum": [
+                0,
+                15
+              ]
+            },
+            "incident_management": {
+              "type": "number",
+              "description": "Related to Q20/33: Does your organization have any standard procedure to manage cyber incidents (prevention, propagation prevention, effects mitigation, eradication)?",
+              "enum": [
+                0,
+                5
+              ]
+            },
+            "business_continuity": {
+              "type": "number",
+              "description": "Related to Q21/33: Does your company have any Business Continuity plan in place?",
+              "enum": [
+                0,
+                30
+              ]
+            },
+            "disaster_recovery": {
+              "type": "number",
+              "description": "Related to Q22/33: Does your company have any Recovery plan (Disaster Recovery) in place?",
+              "enum": [
+                0,
+                15
+              ]
+            },
+            "restore_activity": {
+              "type": "number",
+              "description": "Related to Q23/33: Are the restoration activities (in case of system fault) coordinated with internal and/or external parties?",
+              "enum": [
+                0,
+                5
+              ]
+            },
+            "cyber_risk_insurance": {
+              "type": "number",
+              "description": "Related to Q24/33: Are potential financial disruptions in your organization covered by a Cyber-Risk insurance policy?",
+              "enum": [
+                0,
+                15
+              ]
+            },
+            "html_forms": {
+              "type": "number",
+              "description": "Related to Q25/33: Does the web application consist of HTML forms?",
+              "enum": [
+                5,
+                15
+              ]
+            },
+            "firewall_proxy": {
+              "type": "number",
+              "description": "Related to Q26/33: Do you have application firewalls or proxies in your system?",
+              "enum": [
+                5,
+                15
+              ]
+            },
+            "browser_css": {
+              "type": "number",
+              "description": "Related to Q27/33: Do browsers used in your organization allow client side scripting?",
+              "enum": [
+                5,
+                15
+              ]
+            },
+            "http_verbs": {
+              "type": "number",
+              "description": "Related to Q28/33: Does the application in any situations authenticate a user using HTTP Verbs (POST, GET, TRACE, etc.)?",
+              "enum": [
+                5,
+                15
+              ]
+            },
+            "challenge_handshake": {
+              "type": "number",
+              "description": "Related to Q29/33: Does your authentication protocol rely on a challenge-handshake or similar mechanism?",
+              "enum": [
+                5,
+                15
+              ]
+            },
+            "rbac": {
+              "type": "number",
+              "description": "Related to Q30/33: Are there defined roles in order to support role-based access control?",
+              "enum": [
+                5,
+                15
+              ]
+            },
+            "no_auth_functions": {
+              "type": "number",
+              "description": "Related to Q31/33: Are there functions that not need authentication?",
+              "enum": [
+                5,
+                15
+              ]
+            },
+            "restricted_files": {
+              "type": "number",
+              "description": "Related to Q32/33: Are there any restrincted files or folders in the web server used by the web application(s)?",
+              "enum": [
+                5,
+                15
+              ]
+            },
+            "ebitda": {
+              "type": "string",
+              "description": "Related to Q33/33: EBITDA, if the organization has debts; or (Net income - Net profit), if the organization has not debts and easy access to fresh cash."
+            }
+          },
+          "required": [
+            "head_office",
+            "legal_jurisdiction",
+            "sensitivity",
+            "sec_info_policy",
+            "compliance",
+            "info_sec_controls",
+            "sec_train",
+            "physical_perimeter",
+            "access_control",
+            "user_access_level",
+            "it_contracts",
+            "remote_access",
+            "in_transit_protection",
+            "removable_media",
+            "activity_logs",
+            "system_availability",
+            "test_environment",
+            "change_process",
+            "backups",
+            "incident_management",
+            "business_continuity",
+            "disaster_recovery",
+            "restore_activity",
+            "cyber_risk_insurance",
+            "html_forms",
+            "firewall_proxy",
+            "browser_css",
+            "http_verbs",
+            "challenge_handshake",
+            "rbac",
+            "no_auth_functions",
+            "restricted_files",
+            "ebitda"
+          ]
+        }
+      }
+    }
+  ],
+  "required": [
+    "subtype",
+    "name",
+    "description",
+    "contacts",
+    "datatype",
+    "reference",
+    "model_ref",
+    "x_organization",
+    "country",
+    "city",
+    "postal_code",
+    "address",
+    "contacts",
+    "company_profile"
+  ],
+  "definitions": {
+    "industry-sector-ov": {
+      "type": "string",
+      "enum": [
+        "agriculture",
+        "aerospace",
+        "automotive",
+        "communications",
+        "construction",
+        "defence",
+        "education",
+        "energy",
+        "engineering",
+        "entertainment",
+        "financial-services",
+        "government-national",
+        "government-regional",
+        "government-local",
+        "government-public-services",
+        "healthcare",
+        "hospitality-leisure",
+        "infrastructure",
+        "insurance",
+        "manufacturing",
+        "mining",
+        "non-profit",
+        "pharmaceuticals",
+        "retail",
+        "technology",
+        "telecommunications",
+        "transportation",
+        "utilities",
+        "other"
+      ]
+    }
+  }
+}

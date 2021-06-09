@@ -1,0 +1,20 @@
+{
+  "type": "x-threat",
+  "id": "x-threat--8c6af861-7b20-41ef-9b59-6344fd872a8f",
+  "domain": "Physical",
+  "subtype": "Disaster",
+  "datatype": "Instance",
+  "x_organization": "x-organization--83112ad7-032a-4791-a7b9-48efef029f5d",
+  "likelihood": 0.7,
+  "impact_level": "High",
+  "created": "2016-08-08T15:50:10.983Z",
+  "modified": "2016-08-08T15:50:10.983Z",
+  "name": "Flood",
+  "impact_description": "The headquarters will burn for weeks",
+  "description": "Flood threatening the Organization",
+  "organization_ref": "x-organization--8c6af861-7b20-41ef-9b59-6344fd872a8f",
+  "reference": "x-threat--026af861-7b20-41ef-9b59-6344fd872a89",
+  "model_ref": "x-threat--026af861-7b20-41ef-9b59-6344fd872a89"
+}
+
+

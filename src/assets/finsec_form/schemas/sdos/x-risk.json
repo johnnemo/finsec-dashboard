@@ -1,0 +1,171 @@
+{
+  "id": "../sdos/x-risk.json",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "x-risk",
+  "description": "Identities a risk level.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "../../../../schemas/stix2-schemas/schemas/common/core.json"
+    },
+    {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The type of this object, which MUST be the literal `x-risk`.",
+          "enum": [
+            "x-risk"
+          ]
+        },
+        "id": {
+          "title": "id",
+          "pattern": "^x-risk--"
+        },
+        "domain": {
+          "type": "string",
+          "description": "The domain this of the threat/vulnerability that this risk is calculated for e.g., cyber or physical.",
+          "enum": [
+            "Cyber",
+            "Physical"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of this x-risk."
+        },
+        "description": {
+          "type": "string",
+          "description": "A description that provides more details and context about the risk calculated."
+        },
+        "x_organization": {
+          "type": "string",
+          "description": "Reference to the parent organization if applicable.",
+          "pattern": "^x-organization--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+        },
+        "datatype": {
+          "type": "string",
+          "description": "Datatype can be model or instance. model indicates that the object is a model that can be used as a basis for the analytics. instance is used when the object is generated at run-time.  ",
+          "enum": [
+            "Model",
+            "Instance"
+          ]
+        },
+        "total_risk": {
+          "type": "string",
+          "description": "The total risk calculated based on MITIGATE metrics.",
+          "enum": [
+            "VL",
+            "L",
+            "M",
+            "H",
+            "VH"
+          ]
+        },
+        "threat_refs": {
+          "type": "array",
+          "description": "Specifies the threats that this risk was calculated for.",
+          "items": {
+            "type": "string",
+            "pattern": "^x-threat--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+          }
+        },
+        "vuln_refs": {
+          "type": "array",
+          "description": "Specifies the vulnerabilities this risk was calculated for.",
+          "items": {
+            "type": "string",
+            "pattern": "^vulnerability--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+          }
+        },
+        "model_ref": {
+          "type": "string",
+          "description": "Is used by the objects with datatype instance to refer to the related model",
+          "pattern": "^x-risk--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+        }
+      },
+      "oneOf": [
+        {
+          "subtype": {
+            "type": "string",
+            "description": "The subtype of this risk.",
+            "enum": [
+              "individual"
+            ]
+          },
+          "reference": {
+            "type": "string",
+            "description": "Reference usually refers to the object above in hierarchy. It  is used to create trees of objects",
+            "pattern": "^x-asset--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+          },
+          "asset_refs": {
+            "type": "null",
+            "description": "Specifies the asset for which the risk is calculated."
+          },
+          "service_refs": {
+            "type": "null",
+            "description": "Specifies the service for which the risk is calculated."
+          },
+          "entry_point": {
+            "type": "null",
+            "description": "Specifies the entry point in case of a propagated or commutative risk."
+          },
+          "required": [
+            "reference"
+          ]
+        },
+        {
+          "subtype": {
+            "type": "string",
+            "description": "The subtype of this risk.",
+            "enum": [
+              "propagated",
+              "commutative"
+            ]
+          },
+          "reference": {
+            "type": "string",
+            "description": "Reference usually refers to the object above in hierarchy. It  is used to create trees of objects",
+            "pattern": "^x-service--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+          },
+          "asset_refs": {
+            "type": "array",
+            "description": "Specifies the asset for which the risk is calculated.",
+            "items": {
+              "type": "string",
+              "pattern": "^x-asset--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+              "minItems": 1
+            }
+          },
+          "service_refs": {
+            "type": "array",
+            "description": "Specifies the service for which the risk is calculated.",
+            "items": {
+              "type": "string",
+              "pattern": "^x-service--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+              "minItems": 1
+            }
+          },
+          "entry_point": {
+            "type": "string",
+            "description": "Specifies the entry point in case of a propagated or commutative risk.",
+            "pattern": "^x-asset--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+          },
+          "required": [
+            "asset_refs",
+            "service_refs",
+            "reference",
+            "entry_point"
+          ]
+        }
+      ]
+    }
+  ],
+  "required": [
+    "name",
+    "description",
+    "domain",
+    "total_risk",
+    "vuln_refs",
+    "threat_refs"
+  ]
+}

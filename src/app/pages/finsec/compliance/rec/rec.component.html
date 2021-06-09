@@ -1,0 +1,77 @@
+<mat-expansion-panel class="compliance-headers-align">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      [{{item.kind}}]
+    </mat-panel-title>
+    <mat-panel-description>
+      {{item.standard_item.title}}
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+
+  <mat-card
+    *ngIf="item.standard_item.forLevels || item.standard_item.applicability ||item.standard_item.objective ||item.standard_item.description || item.standard_item.reference || item.standard_item.expected_output">
+    <p *ngIf="item.standard_item.forLevels">
+      <lab>For levels</lab>
+      {{item.standard_item.forLevels.join(", ")}}
+    </p>
+    <p *ngIf="item.standard_item.applicability">
+      <lab>Applicability</lab>
+      {{item.standard_item.applicability}}
+    </p>
+    <p *ngIf="item.standard_item.objective">
+      <lab>Objective</lab>
+      {{item.standard_item.objective}}
+    </p>
+    <p *ngIf="item.standard_item.description">
+      <lab>Description</lab>
+      {{item.standard_item.description}}
+    </p>
+    <p *ngIf="item.standard_item.reference">
+      <lab>Reference</lab>
+      <ref [reference]=item.standard_item.reference></ref>
+    </p>
+    <p *ngIf="item.standard_item.expected_output">
+      <lab>Expected output</lab>
+      {{item.standard_item.expected_output}}
+    </p>
+    <p *ngIf="item.standard_item.comments">
+      <lab>Comments</lab>
+      {{item.standard_item.comments}}
+    </p>
+  </mat-card>
+
+  <p *ngIf="item.applicable !== null">
+    <lab>Applicable</lab>
+    {{item.applicable}}
+  </p>
+  <p *ngIf="item.applicability">
+    <lab>Comment regarding applicability</lab>
+    {{item.applicability}}
+  </p>
+  <p *ngIf="item.level">
+    <lab>Level</lab>
+    {{item.level}}
+  </p>
+  <p *ngIf="item.claim">
+    <lab>Claim</lab>
+    {{item.claim}}
+  </p>
+  <div *ngIf="item.evidence">
+    <lab>Evidence</lab>
+    <ul>
+      <li *ngFor="let e of item.evidence">
+        <ref [reference]=e></ref>
+      </li>
+    </ul>
+  </div>
+  <p *ngIf="item.argument">
+    <lab>Argument</lab>
+    {{item.argument}}
+  </p>
+  <p *ngIf="item.output">
+    <lab>Output</lab>
+    {{item.output}}
+  </p>
+
+  <rc *ngFor="let i of item.contents" [item]=i></rc>
+</mat-expansion-panel>

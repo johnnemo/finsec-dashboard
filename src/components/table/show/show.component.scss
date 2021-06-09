@@ -1,0 +1,9 @@
+.target-details {
+  text-align: justify;
+
+  & > p > span {
+    &.title {
+      color: #3960F7;
+    }
+  }
+}

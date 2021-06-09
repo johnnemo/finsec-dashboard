@@ -1,0 +1,15 @@
+{
+  "type": "x-agent",
+  "id": "x-agent--6caeae68-2f83-4f30-95fa-367c61bb32e6",
+  "name": "Unknown",
+  "token_id": "6caeae68-2f83-4f30-95fa-367c61bb32e6",
+  "x_organization": "x-organization--6caeae68-2f83-4f30-95fa-367c61bb32e6",
+  "description": "Unknown agent detected",
+  "subtype": "criminal",
+  "accessories": ["gun", "bag"],
+  "datatype": "Instance",
+  "reference": "x-stray--6caeae68-2f83-4f30-95fa-367c61bb32e6",
+  "model_ref": "x-agent--6caeae68-2f83-4f30-95fa-367c61bb32e6",
+  "created": "2016-08-23T18:05:49.307Z",
+  "modified": "2016-08-23T18:05:49.307Z"
+}

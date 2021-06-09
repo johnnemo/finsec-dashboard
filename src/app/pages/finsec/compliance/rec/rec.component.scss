@@ -1,0 +1,72 @@
+$type-colors: (
+  string: #ffffff,
+  number: #009688,
+  boolean: #eedf9a,
+  date: #05668D,
+  array: #999,
+  object: #999,
+  function: #999,
+  'null': #fff,
+  undefined: #fff
+);
+
+::ng-deep .segment-key {
+  color: #598bff !important;
+}
+
+@each $type, $color in $type-colors {
+  ::ng-deep .segment-type-#{$type} > .segment-main > .segment-value {
+    color: $color !important;
+  }
+}
+
+::ng-deep nb-card.scrollable-card {
+  max-height: 60vh;
+  overflow-y: scroll;
+}
+
+.mat-header-cell {
+  padding: 0px 6px 0px 6px;
+}
+
+.mat-cell {
+  padding: 0px 6px 0px 6px;
+}
+
+.mat-card {
+  margin: 10px;
+  box-shadow: 0px 0px 2px 2px rgb(0 0 0 / 20%);
+}
+
+.mat-expansion-panel {
+  margin: 5px;
+  box-shadow: 0px 0px 2px 2px rgb(0 0 0 / 20%);
+}
+
+/* From expansion-panel docs */
+
+.compliance-headers-align .mat-expansion-panel-header-title,
+.compliance-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.compliance-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.compliance-headers-align .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+
+lab + ul {
+  margin-top: 0px;
+}
+
+lab > b {
+  color: red!important;
+}
+
+p {
+  white-space: pre-wrap;
+}

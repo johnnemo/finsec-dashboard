@@ -1,0 +1,7 @@
+.window-limited-height {
+  max-height: 90vh;
+
+  .card-body {
+    overflow: scroll;
+  }
+}

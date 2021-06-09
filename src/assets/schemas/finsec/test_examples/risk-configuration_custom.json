@@ -1,0 +1,21 @@
+{
+  "type": "x-risk-configuration",
+  "id": "x-risk-configuration--8c6af861-7b20-41ef-9b59-6344fd872a8f",
+  "domain": "Cyber",
+  "subtype": "LOG",
+  "monitoring_rate": 14,
+  "name": "Probe configuration name",
+  "description": "The description of the probe config",
+  "x_organization": "x-organization--da691dda-cd1c-4c11-805e-d18b3d828974",
+  "area_refs": [
+    "x-area--5b8c5fa6-85d1-42f1-8ac7-71833c8f1600"
+  ],
+  "event_refs": [
+    "x-event--4ca50f73-d7a7-4edd-8942-a3c73c7bf303"
+  ],
+  "datatype": "Instance",
+  "reference": "x-risk--d3be1f09-88a0-4e05-b3bf-3546ee0eef2a",
+  "model_ref": "x-risk-configuration--6caeae68-2f83-4f30-95fa-367c61bb32e6",
+  "created": "2016-08-08T15:50:10.983Z",
+  "modified": "2016-08-08T15:50:10.983Z"
+}

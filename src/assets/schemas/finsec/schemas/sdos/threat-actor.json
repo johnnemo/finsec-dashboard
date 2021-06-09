@@ -1,0 +1,21 @@
+{
+  "id": "../sdos/threat-actor.json",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "threat-actor",
+  "description": "A threat actor can be individuals, groups, or organizations believed to be operating with malicious intent.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "../../../stix2-schemas/schemas/sdos/threat-actor.json"
+    },
+    {
+      "properties": {
+        "x_organization": {
+          "type": "string",
+          "description": "Reference to the organization which is owner of the information contained in the object.",
+          "pattern": "^x-organization--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+        }
+      }
+    }
+  ]
+}

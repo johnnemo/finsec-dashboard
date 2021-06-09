@@ -1,0 +1,30 @@
+<nb-card size="small">
+  <nb-card-header>Assets</nb-card-header>
+  <nb-card-body>
+    <div class="row text-center">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <div class="pie-container" style="width:100px;height:100px;">
+          <div [options]="options" class="echart" echarts id="asset-chart"></div>
+        </div>
+        <div>Domain</div>
+        <div class="row">
+          <div class="col text-center">
+            <div class="pie-container" style="width:75px;height:75px;">
+              <div [options]="vendor_options" class="echart" echarts id="vendor-chart"></div>
+            </div>
+            <div>Vendor</div>
+          </div>
+          <div class="col text-center">
+            <div class="pie-container" style="width:75px;height:75px;">
+              <div [options]="type_options" class="echart" echarts id="type-chart"></div>
+            </div>
+            <div>Type</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center">
+        <div class="map" id="map"></div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

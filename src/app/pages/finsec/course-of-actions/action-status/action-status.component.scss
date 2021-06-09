@@ -1,0 +1,15 @@
+.detection {
+  display: flex;
+}
+
+p {
+  text-align: left;
+  margin-bottom: 5px;
+  &.on {
+    color: green;
+  }
+  &.off {
+    color: red;
+  }
+
+}

@@ -1,0 +1,73 @@
+{
+  "id": "../sdos/attack-pattern.json",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "attack-pattern",
+  "description": "An attack pattern is a type of Tactics, Techniques, and Procedures (TTP) that describes ways threat actors attempt to compromise targets.", 
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "../../../stix2-schemas/schemas/sdos/vulnerability.json"
+    },
+    {
+      "properties": {
+        "x_organization": {
+          "type": "string",
+          "description": "Reference to the organization which is owner of the information contained in the object.",
+          "pattern": "^x-organization--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+        },
+		"x_capec_abstraction": {
+		  "type": "string"
+		},
+		"x_capec_consequences": {
+		  "type": "object",
+		  "properties": {
+            "Integrity": {
+			  "type": "array",
+			  "items": { "type": "string" }
+			},
+            "Availability": {
+			  "type": "array",
+			  "items": { "type": "string" }
+			},
+            "Authorization": {
+			  "type": "array",
+			  "items": { "type": "string" }
+			}, 
+	        "Access_Control": {
+			  "type": "array",
+			  "items": { "type": "string" }
+			}, 
+		    "Confidentiality": {
+			  "type": "array",
+			  "items": { "type": "string" }
+			}
+		  }
+		},
+        "x_capec_example_instances": {
+	      "type": "array",
+	      "items": { "type": "string" }
+	    },
+	    "x_capec_likelihood_of_attack": { "type": "string" },
+	    "x_capec_prerequisites": {
+	      "type": "array",
+	      "items": { "type": "string" }
+	    },
+	    "x_capec_resources_required": {
+	      "type": "array",
+	      "items": { "type": "string" }
+	    },
+	    "x_capec_skills_required": {
+	      "type": "object",
+	      "properties": {
+		    "Low": { "type": "string" },
+     	    "High": { "type": "string" }
+          }
+		},
+		"x_capec_status": { "type": "string" },
+		"x_capec_typical_severity": { "type": "string" }
+      }
+    }
+  ],
+  "required":
+  [ "x_organization" ]
+}

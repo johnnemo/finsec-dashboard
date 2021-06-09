@@ -1,0 +1,120 @@
+{
+  "id": "../sdos/x-service.json",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "x-service",
+  "description": "Identities a service.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "../../../stix2-schemas/schemas/common/core.json"
+    },
+    {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The type of this object, which MUST be the literal `x-service`.",
+          "enum": [
+            "x-service"
+          ]
+        },
+        "id": {
+          "title": "id",
+          "pattern": "^x-service--"
+        },
+        "subtype": {
+          "type": "string",
+          "description": "Defines the subtype of the Service.",
+          "enum": [
+            "public",
+            "private"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of this Service."
+        },
+        "description": {
+          "type": "string",
+          "description": "A quick description of the Service."
+        },
+        "x_organization": {
+          "type": "string",
+          "description": "Reference to the parent organization if applicable. If not the same organization ref will be used",
+          "pattern": "^x-organization--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+        },
+        "domain": {
+          "type": "string",
+          "description": "The domain of this service.",
+          "enum": [
+            "cyber",
+            "physical",
+            "hybrid"
+          ]
+        },
+        "criticality": {
+          "type": "integer",
+          "description": "The score depicting how critical this Service is for the overall system security.",
+          "minimum": 1,
+          "maximum": 10
+        },
+        "availability": {
+          "type": "boolean",
+          "description": "Provides information about the availability of a Service"
+        },
+        "asset_refs": {
+          "type": "array",
+          "description": "Specifies the FINSTIX assets that are part of this Service.",
+          "items": {
+            "pattern": "^x-asset--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+          },
+          "minItems": 1
+        },
+        "service_refs": {
+          "type": "array",
+          "description": "Specifies the dependent services that are part of this Service.",
+          "items": {
+            "pattern": "^x-service--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+          }
+        },
+        "risk_ref": {
+          "type": "string",
+          "pattern": "^x-risk--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+        }
+      },
+      "datatype": {
+        "type": "string",
+        "description": "Datatype can be model or instance. model indicates that the object is a model that can be used as a basis for the analytics. instance is used when the object is generated at run-time.  ",
+        "enum": [
+          "Model",
+          "Instance"
+        ]
+      },
+      "reference": {
+        "type": "string",
+        "description": "Reference usually refers to the object above in hierarchy. It  is used to create trees of objects",
+        "pattern": "^x-(root|service|organization)--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+      },
+      "model_ref": {
+        "type": "string",
+        "description": "Is used by the objects with datatype instance to refer to the related model",
+        "pattern": "^x-service--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+      }
+    }
+  ],
+  "required": [
+    "name",
+    "type",
+    "asset_refs",
+    "domain",
+    "availability",
+    "criticality",
+    "domain",
+    "subtype",
+    "risk_ref",
+    "asset_refs",
+    "x_organization",
+    "datatype",
+    "reference",
+    "model_ref"
+  ]
+}

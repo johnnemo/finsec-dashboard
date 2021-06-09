@@ -1,0 +1,15 @@
+<nb-card size="small">
+  <nb-card-header>Event GEO-Timeline (last 12 hours)</nb-card-header>
+  <nb-card-body>
+    <div class="row text-center">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <div *ngIf="flag" [options]="options" class="echart" echarts></div>
+        <div *ngIf="!flag" class="col-lg-6 col-md-6 col-sm-6 col-xs-6"> No events found in this period</div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <div class="event_map" id="event_map"></div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
+

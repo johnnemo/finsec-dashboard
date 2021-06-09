@@ -1,0 +1,6 @@
+<button (click)="openGraph()" nbButton>Relations</button>
+<ng-template #contentTemplate>
+  <div (click)="details(options)" [options]="options | async" echarts style="height:700px;width:1388px;">
+  </div>
+</ng-template>
+

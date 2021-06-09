@@ -1,0 +1,24 @@
+{
+  "type": "x-probe",
+  "id": "x-probe--8c6af861-7b20-41ef-9b59-6344fd872a8f",
+  "name": "LDAP log probe",
+  "description": "Logs information of logged in users",
+  "x_organization": "x-organization--da691dda-cd1c-4c11-805e-d18b3d828974",
+  "subtype": "LOG",
+  "domain": "Logical",
+  "ipv4_addr": "122.101.90.93",
+  "ipv6_addr": "64:ff9b::192.0.2.33",
+  "observable_url": "https://observables.finstix/observable--8c6af861-7b20-41ef-9b59-6344fd872a8f",
+  "asset_refs": [
+    "x-asset--8c6af861-7b20-41ef-9b59-6344fd872a8f"
+  ],
+  "event_refs": [
+    "x-event--8c6af861-7b20-41ef-9b59-6344fd872a8f"
+  ],
+  "datatype": "Instance",
+  "reference": "x-asset--d3be1f09-88a0-4e05-b3bf-3546ee0eef2a",
+  "model_ref": "x-probe--6caeae68-2f83-4f30-95fa-367c61bb32e6",
+  "created": "2016-08-08T15:50:10.983Z",
+  "modified": "2016-08-08T15:50:10.983Z"
+}
+

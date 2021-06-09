@@ -1,0 +1,32 @@
+{
+  "type": "x-service",
+  "subtype": "public",
+  "id": "x-service--8c6af861-7b20-41ef-9b59-6344fd872a8f",
+  "name": "Money transfer service",
+  "description": "Aims to transfer money in a secure way",
+  "x_organization": "x-organization--83112ad7-032a-4791-a7b9-48efef029f5d",
+  "domain": "Physical",
+  "criticality": 9,
+  "availability": true,
+  "asset_refs": [
+    "x-asset--bd2cbad1-6ccf-48e3-bb92-bc9961bc011e",
+    "x-asset--b5e2cf01-8bb6-4fcd-ad88-0efb611195da",
+    "x-asset--40fd8171-0a24-40a6-9554-576eb1def274",
+    "x-asset--caa8b54a-eb5e-4134-8ae2-a3946a428ec7",
+    "x-asset--8ffc7249-b76e-4e98-9282-99752ce8ad96",
+    "x-asset--badca3e8-46a2-4681-bb85-f849c6836805",
+    "x-asset--72787b78-6bbf-4f02-b6d5-bfa8749e49d0",
+    "x-asset--68d5c573-7bb3-419a-89c9-ff3fb687fd8b"
+  ],
+  "service_refs": [
+    "x-service--d3be1f09-88a0-4e05-b3bf-3546ee0eef2a",
+    "x-service--d3be1f09-88a0-4e05-b3bf-3546ee0eef2a"
+  ],
+  "risk_ref": "x-risk--d3be1f09-88a0-4e05-b3bf-3546ee0eef2a",
+  "datatype": "Instance",
+  "reference": "x-service--d3be1f09-88a0-4e05-b3bf-3546ee0eef2a",
+  "model_ref": "x-service--6caeae68-2f83-4f30-95fa-367c61bb32e6",
+  "created": "2019-08-08T15:50:10.983Z",
+  "modified": "2019-08-08T15:50:10.983Z"
+}
+

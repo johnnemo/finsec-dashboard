@@ -1,0 +1,315 @@
+{
+  "id": "../sdos/x-regulation.json",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "x-regulation",
+  "description": "Identities a regulation instance. examples are NIS or GDPR.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "../../../schemas/stix2-schemas/schemas/common/core.json"
+    },
+    {
+      "properties": {
+        "id": {
+          "description": "Represents identifiers across the CTI specifications. The format consists of the name of the top-level object being identified, followed by two dashes (--), followed by a UUIDv4.",
+          "type": "string",
+          "pattern": "^x-regulation--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+        },
+        "type": {
+          "type": "string",
+          "description": "It MUST be the literal `x-regulation`.",
+          "enum": [
+            "x-regulation"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of this regulation violation."
+        },
+        "subtype": {
+          "type": "string",
+          "description": "The subtype of this violation (regulation authority).",
+          "enum": [
+            "GDPR"
+          ]
+        },
+        "description": {
+          "type": "string",
+          "description": "A description that provides more details and context about the regulation."
+        },
+        "notification_type": {
+          "type": "string",
+          "description": "The type of notification for the current regulation violation.",
+          "enum": [
+            "complete",
+            "two_step"
+          ]
+        },
+        "breach_date": {
+          "type": "string",
+          "pattern": "^[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9]|60)(\\.[0-9]+)?Z$",
+          "description": "Specifies the date/time the breach took place"
+        },
+        "detection_date": {
+          "type": "string",
+          "pattern": "^[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9]|60)(\\.[0-9]+)?Z$",
+          "description": "Specifies the date/time detection of the breach took place."
+        },
+        "end_date": {
+          "type": "string",
+          "pattern": "^[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9]|60)(\\.[0-9]+)?Z$",
+          "description": "Specifies the date/time the breach ended."
+        },
+        "breach_cause": {
+          "type": "string",
+          "description": "Specifies the regulation cause. Open vocab breach-cause-ov"
+        },
+        "attack_motivation": {
+          "type": "string",
+          "description": "Description of the possible malicious attack motivation"
+        },
+        "malicious_software": {
+          "type": "string",
+          "description": "The software used to perform an attack (in case of malicious attack triggered regulation). Possible values from regulation-software-ov"
+        },
+        "attack_cause": {
+          "type": "string",
+          "description": "The cause of the malicious attack. Open Vocab - malicious-attack-cause-ov"
+        },
+        "impact": {
+          "type": "string",
+          "description": "Provides the impact level of the regulation breach. Open Vocab - regulation-impact-ov."
+        },
+        "datasets_affected": {
+          "type": "integer",
+          "description": "the number of affected datasets by the regulation"
+        },
+        "data_exploited": {
+          "type": "string",
+          "description": "The type of data that were exploited.",
+          "enum": [
+            "personal",
+            "sensitive",
+            "non-sensitive",
+            "non-personal"
+          ]
+        },
+        "personal_data_encryption": {
+          "type": "string",
+          "description": "The encryption if the data was stolen.",
+          "enum": [
+            "full",
+            "partial",
+            "none"
+          ]
+        },
+        "dpia": {
+          "type": "boolean",
+          "description": "Have the data breached been subject to a Data Protection Impact Assessment?"
+        },
+        "it_support": {
+          "type": "string",
+          "description": "What type of IT does the company have:",
+          "enum": [
+            "internal",
+            "external"
+          ]
+        },
+        "incident_insurance": {
+          "type": "boolean",
+          "description": "Does the company have insurance for the current incident type?"
+        },
+        "adverse_effects_measures": {
+          "type": "string",
+          "description": "What measures have been taken to mitigate the adverse effects of the breach. Possible values can be derived from regulation-adverse-effects-measures-ov"
+        },
+        "notified": {
+          "type": "boolean",
+          "description": "Have data subjects been notified for the data regulation?"
+        },
+        "notified_counter": {
+          "type": "integer",
+          "description": "Number of data subjects been notified for the data regulation?"
+        },
+        "notification_cost": {
+          "type": "integer",
+          "description": "Estimated notification loss for this specific regulation"
+        },
+        "financial_damage": {
+          "type": "integer",
+          "description": "Estimated financial damage for this specific regulation"
+        },
+        "incident_mitigation_measures": {
+          "type": "string",
+          "description": "What has been done or planned to mitigate this exploit in future. Possible values are derived from regulation-mitigation-action-ov"
+        },
+        "data_security_measures": {
+          "type": "string",
+          "description": "In case data security measures are applied. Possible values can be derived from regulation-mitigation-action-security-measures-ov"
+        },
+        "created_by_ref": {
+          "pattern": "^[a-z0-9][a-z0-9-]+[a-z0-9]--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+          "description": "The ID of the Source object that describes who created this object."
+        },
+        "labels": {
+          "type": "array",
+          "description": "The labels property specifies a set of classifications.",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "x_organization": {
+          "type": "string",
+          "description": "Reference to the organization which is owner of the information contained in the object.",
+          "pattern": "^x-organization--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+        },
+        "created": {
+          "type": "string",
+          "description": "Created date of the object",
+          "pattern": "^[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9]|60)(\\.[0-9]+)?Z$"
+        },
+        "modified": {
+          "type": "string",
+          "description": "Created date of the object",
+          "pattern": "^[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9]|60)(\\.[0-9]+)?Z$"
+        },
+        "revoked": {
+          "type": "boolean",
+          "description": "The revoked property indicates whether the object has been revoked."
+        }
+      }
+    }
+  ],
+  "required": [
+    "name",
+    "description",
+    "adverse_effects_measures",
+    "dpia",
+    "it_support",
+    "incident_insurance",
+    "incident_mitigation_measures",
+    "data_security_measures",
+    "notification_type",
+    "data_exploited",
+    "personal_data_encryption",
+    "detection_date",
+    "end_date",
+    "attack_cause",
+    "malicious_software",
+    "impact",
+    "datasets_affected",
+    "notified",
+    "notified_counter",
+    "notification_cost",
+    "financial_damage"
+  ],
+  "definitions": {
+    "breach-cause-ov": {
+      "type": "string",
+      "enum": [
+        "malicious-attack-internal",
+        "malicious-attack-external",
+        "accident (system failure)",
+        "negligence (human error)"
+      ]
+    },
+    "malicious-attack-cause-ov": {
+      "type": "string",
+      "enum": [
+        "cryptolockers",
+        "fire reconnaissance",
+        "phishing",
+        "distributed denial of service",
+        "malware",
+        "social engineering",
+        "blackmail",
+        "unknown vulnerability"
+      ]
+    },
+    "regulation-impact-ov": {
+      "type": "string",
+      "enum": [
+        "data publication",
+        "data theft",
+        "identity theft or fraud",
+        "loss of data",
+        "loss of confidentiality of personal data",
+        "property damage",
+        "direct financial loss",
+        "business interruption",
+        "liability issues",
+        "damage to the reputation",
+        "other"
+      ]
+    },
+    "regulation-software-ov": {
+      "type": "string",
+      "enum": [
+        "man-in-the-middle",
+        "malware",
+        "ransomware",
+        "SQL injection",
+        "Cross-site scripting (XSS)",
+        "Denial of Service (DoS)",
+        "session hijacking",
+        "credential reuse",
+        "other"
+      ]
+    },
+    "regulation-sector-ov": {
+      "type": "string",
+      "enum": [
+        "Agriculture, Forestry, fishing",
+        "Mining and quarrying",
+        "Manufacturing",
+        "Electricity, gas, steam and air conditioning supply",
+        "Water supply; sewerage, waste management and remediation",
+        "Construction",
+        "Wholesale and retail trade; repair of motor vehicles and motorcycles",
+        "Transportation and storage",
+        "Accommodation activities",
+        "Food service activities",
+        "Publishing, audio-visual and broadcasting activities",
+        "Telecommunications",
+        "IT and other information services",
+        "Financial and insurance activities",
+        "Public administration and defence; compulsory social security",
+        "Education",
+        "Human health activities",
+        "Residential care and social work activities",
+        "Arts entertainment and recreation",
+        "Other service activities",
+        "Activities of households as employers; undifferentiated goods- and services",
+        "Activities of households of own use"
+      ]
+    },
+    "regulation-mitigation-action-ov": {
+      "type": "string",
+      "enum": [
+        "enchcncement of data security measures",
+        "no data security measures were taken",
+        "other"
+      ]
+    },
+    "regulation-mitigation-action-security-measures-ov": {
+      "type": "string",
+      "enum": [
+        "Audit and redesign of data collection procedure",
+        "Audit and redesign of data processing procedure",
+        "Audit and re-evaluate the Data processor (if applicable)",
+        "Encryption of data at rest"
+      ]
+    },
+    "regulation-adverse-effects-measures-ov": {
+      "type": "string",
+      "enum": [
+        "data recovery",
+        "update system",
+        "replacement of destroyed property",
+        "external testing",
+        "enhancement of data security measures"
+      ]
+    }
+  }
+}

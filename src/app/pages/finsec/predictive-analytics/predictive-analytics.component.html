@@ -1,0 +1,90 @@
+<div class="row">
+  <div class="col-md-12 col-lg-12 col-xxxl-12">
+    <nb-card size="xlarge">
+      <nb-card-header>Attacks</nb-card-header>
+      <nb-card-body>
+        <ng2-smart-table (userRowSelect)="onRowSelect($event)" [settings]="settings" [source]="source">
+        </ng2-smart-table>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-md-6 col-lg-6 col-xxxl-6 hidden" id="asset-card">
+    <nb-card size="small">
+      <nb-card-header>Target Details</nb-card-header>
+      <nb-card-body>
+        <div class="row">
+          <div class="col">
+            <p class="text-center">Targets</p>
+            <div *ngFor="let target of attack_assets" class="target-details">
+              <p>--------------------------------------------------------------------</p>
+              <p><span class="title"> Name </span>: {{target.name}} </p>
+              <p><span class="title">Description </span>: {{target.description}} </p>
+              <p><span class="title">Created </span>: {{target.created}} </p>
+              <p><span class="title">Modified </span>: {{target.modified}} </p>
+              <p><span class="title">Subtype </span>: {{target.subtype}} </p>
+              <p><span class="title">Domain </span>: {{target.domain}} </p>
+              <p><span class="title">Product name </span>: {{target.product_name}} </p>
+              <p><span class="title">Product version </span>: {{target.product_version}} </p>
+              <p><span class="title">Product vendor </span>: {{target.product_vendor}} </p>
+              <p><span class="title">Network type </span>: {{target.network_type}} </p>
+              <p><span class="title">Domain name </span>: {{target.domain_name}} </p>
+              <p><span class="title">Operating system </span>: {{target.operating_system}} </p>
+              <p><span class="title">Operating system version </span>: {{target.operating_system_version}}
+              </p>
+              <p><span class="title">Ip v4 </span>: {{target.ipv4_addr}} </p>
+              <p><span class="title">Ip v6 </span>: {{target.ipv6_addr}}</p>
+            </div>
+          </div>
+          <div class="col">
+            <p class="text-center">Location</p>
+            <div class="map" id="map"></div>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div *ngIf="course_of_actions.length > 0" class="col-md-6 col-lg-6 col-xxxl-6">
+    <nb-card size="small">
+      <nb-card-header>Course Of Actions Applied</nb-card-header>
+      <nb-card-body>
+        <nb-stepper orientation="vertical">
+          <nb-step *ngFor="let action of course_of_actions" label="{{action.name}}">
+            <div class="lorem">
+              <p>
+                {{action.description}}
+              </p>
+              <div *ngFor="let item of action.x_actions">
+                <p>{{item.subject}}</p>
+                <p>{{item.body}} </p>
+              </div>
+            </div>
+            <!--<p *ngFor="let policy of action.x_actions">-->
+            <!--Policy: {{policy.name}} <br/>-->
+            <!--Condition: {{policy.parameters.condition}} <br/>-->
+            <!--Failure Mode: {{policy.parameters.failure_mode}} <br/>-->
+            <!--Action: {{policy.parameters.action}} <br/>-->
+            <!--Attack Code: {{policy.parameters.attack_code}} <br/>-->
+            <!--Risk Rate: {{policy.parameters.risk_rate}} <br/>-->
+            <!--</p>-->
+            <button nbButton nbStepperPrevious>prev</button> &nbsp;&nbsp;
+            <button nbButton nbStepperNext>next</button>
+          </nb-step>
+        </nb-stepper>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div *ngIf="attack_events.length > 0" class="col-md-12 col-lg-12 col-xxxl-12">
+    <nb-card size="small">
+      <nb-card-header>Event Sequence</nb-card-header>
+      <nb-card-body>
+        <div class="row text-center">
+          <div *ngIf="attack_events.length > 0" class="col">
+            <p>Overview</p>
+            <ng2-smart-table [settings]="overview_settings" [source]="attack_events">
+            </ng2-smart-table>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

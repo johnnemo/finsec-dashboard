@@ -1,0 +1,16 @@
+<nb-card size="xlarge">
+  <nb-card-header>
+    Finsec Table
+  </nb-card-header>
+  <nb-card-body>
+
+    <ng2-smart-table [class]="class" (custom)="customCallback($event)" (deleteConfirm)="onDeleteConfirm($event)"
+                     (userRowSelect)="onRowSelect($event)"
+                     [settings]="settings"
+                     [source]="source"></ng2-smart-table>
+    <!-- Without the click functionality -->
+    <!--<ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)"></ng2-smart-table>-->
+
+  </nb-card-body>
+</nb-card>
+

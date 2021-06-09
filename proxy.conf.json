@@ -1,0 +1,31 @@
+{
+  "/keycloak": {
+    "target": "https://keycloak.finsec-project.eu",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/keycloak": ""
+    }
+  },
+  "/finsec": {
+    "target": "https://api.dev.finsec-project.eu",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/finsec": ""
+    }
+  },
+  "/backend": {
+    "target": "https://dashboard-backend.dev.finsec-project.eu",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/backend": ""
+    }
+  },
+  "/socket.io/*": {
+    "target": "http://localhost:3001/socket.io/",
+    "secure": false,
+    "ws": true
+  }
+}

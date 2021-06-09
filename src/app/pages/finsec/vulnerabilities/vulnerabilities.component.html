@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-xxxl-12 col-xxl-12 col-lg-12 col-md-12" style="padding-bottom: 15px;">
+    <button (click)="openGraph()" nbButton>Relations</button>
+  </div>
+  <div class="col-xxxl-12 col-xxl-12 col-lg-12 col-md-12">
+    <ng-template #contentTemplate>
+      <div (click)="details(options)" [options]="options | async" echarts style="height:700px;width:1388px;">
+      </div>
+    </ng-template>
+  </div>
+  <div class="col-xxxl-12 col-xxl-12 col-lg-12 col-md-12">
+    <ng2-smart-table (deleteConfirm)="onDeleteConfirm($event)" (userRowSelect)="onRowSelect($event)" [settings]="settings"
+                     [source]="source">
+    </ng2-smart-table>
+  </div>
+  <div class="col-xxxl-12 col-xxl-12 col-lg-12 col-md-12">
+    <!--<finsec-form type="vulnerability" (getAsset)="getAsset($event)" (getMessage)="getMessage($event)"></finsec-form>-->
+  </div>
+</div>
+

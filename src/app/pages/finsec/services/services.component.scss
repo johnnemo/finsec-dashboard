@@ -1,0 +1,80 @@
+.target-details {
+  text-align: justify;
+
+  & > p > span {
+    &.title {
+      color: #3960F7;
+    }
+  }
+}
+
+div.hidden {
+  display: none;
+}
+
+.map {
+  width: 100%;
+  height: 350px;
+  padding-top: 1vmax;
+}
+
+mapboxgl-canvas {
+  left: 0;
+}
+
+button {
+  margin-top: 50px;
+  &#associate {
+    position:absolute;
+    margin-top: -40px!important;
+    margin-left: 130px!important;
+  }
+}
+::ng-deep {
+  ng2-smart-table {
+    table {
+      tbody {
+        /* Alternating row colour */
+        tr:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+:host ::ng-deep .nb-theme-dark ng2-smart-table .ng2-smart-actions {
+  height: auto!important;
+}
+:host ::ng-deep tr .ng2-smart-actions {
+  display: flex;
+}
+
+:host ::ng-deep tr.ng2-smart-filters.ng-star-inserted {
+  th.ng2-smart-actions-title {
+    border-bottom: none;
+  }
+}
+
+:host ::ng-deep tr.ng2-smart-titles.ng-star-inserted > th.ng2-smart-actions.ng-star-inserted {
+  border-bottom: none;
+}
+
+:host ::ng-deep nbng2-st-tbody-custom {
+  display: flex;
+}
+
+:host ::ng-deep ng2-st-tbody-edit-delete a.ng2-smart-action {
+  display: inline-block !important;
+}
+
+:host ::ng-deep ng2-st-tbody-create-cancel a.ng2-smart-action {
+  display: inline-block !important;
+}
+
+:host ::ng-deep ng2-st-tbody-custom a.ng2-smart-action.ng2-smart-action-custom-custom {
+  display: inline-block;
+  width: 80px;
+  text-align: center;
+  padding: 20px 14px;
+}

@@ -1,0 +1,91 @@
+{
+  "id": "../sdos/x-agent.json",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "x-agent",
+  "description": "A agent is a person eventually involved in the events produced by a probe.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "../../../stix2-schemas/schemas/common/core.json"
+    },
+    {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "It MUST be the literal `x-agent`.",
+          "enum": [
+            "x-agent"
+          ]
+        },
+        "id": {
+          "title": "id",
+          "pattern": "^x-agent--"
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the agent."
+        },
+        "description": {
+          "type": "string",
+          "description": "A short description for the agent identified."
+        },
+        "token_id": {
+          "type": "string",
+          "description": "It eventually contains the id used to identify a person."
+        },
+        "accessories": {
+          "type": "array",
+          "description": "The accessories identified for the specific agent.",
+          "items": {
+            "type": "string",
+            "description": "Accessories should take one value of agent-accessories-ov."
+          }
+        },
+        "subtype": {
+          "type": "string",
+          "description": "The subtype of the agent identified.",
+          "enum": [
+            "criminal",
+            "employee",
+            "other"
+          ]
+        },
+        "x_organization": {
+          "type": "string",
+          "description": "Reference to the organization which is owner of the information contained in the object.",
+          "pattern": "^x-organization--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+        },
+        "datatype": {
+          "type": "string",
+          "description": "Datatype can be Model or Instance. Model indicates that the object is a model that can be used as a basis for the analytics. Instance is used when the object is generated at run-time.",
+          "enum": [
+            "Model",
+            "Instance"
+          ]
+        },
+        "reference": {
+          "type": "string",
+          "description": "Reference usually refers to the object above in hierarchy. It  is used to create trees of objects.",
+          "pattern": "^x-stray--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+        },
+        "model_ref": {
+          "type": "string",
+          "description": "Is used by the objects with datatype instance to refer to the related model.",
+          "pattern": "^x-agent--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+        }
+      }
+    }
+  ],
+  "required": [
+    "name",
+	"description"
+  ],
+  "agent-accessories-ov": {
+    "type": "string",
+    "enum": [
+      "gun",
+      "bag",
+      "mask"
+    ]
+  }
+}

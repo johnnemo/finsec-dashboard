@@ -1,0 +1,78 @@
+server {
+        server_name  localhost;
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
+        include /etc/nginx/mime.types;
+        gzip on;
+        gzip_min_length 1000;
+        gzip_proxied expired no-cache no-store private auth;
+        gzip_types text/plain text/css application/json application/javascript application/x-javascript text/xml application/xml application/xml+rss text/javascript;
+        listen  80;
+
+  location /keycloak {
+   if ($request_method = 'OPTIONS') {
+                         add_header 'Access-Control-Allow-Origin' '*';
+                         #
+                         # Om nom nom cookies
+                         #
+                         add_header 'Access-Control-Allow-Credentials' 'true';
+                         add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+                         #
+                         # Custom headers and headers various browsers *should* be OK with but aren't
+                         #
+                         add_header 'Access-Control-Allow-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type';
+                         #
+                         # Tell client that this pre-flight info is valid for 20 days
+                         #
+                         add_header 'Access-Control-Max-Age' 1728000;
+                         add_header 'Content-Type' 'text/plain charset=UTF-8';
+                         add_header 'Content-Length' 0;
+                         return 204;
+                      }
+                      if ($request_method = 'POST') {
+                         add_header 'Access-Control-Allow-Origin' '*';
+                         add_header 'Access-Control-Allow-Credentials' 'true';
+                         add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+                         add_header 'Access-Control-Allow-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Accept,Origin,Referer,Sec-Fetch-Mode';
+                      }
+                      if ($request_method = 'GET') {
+                         add_header 'Access-Control-Allow-Origin' '*';
+                         add_header 'Access-Control-Allow-Credentials' 'true';
+                         add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+                         add_header 'Access-Control-Allow-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type';
+                      }
+                      rewrite /keycloak/(.*) /$1  break;
+                      proxy_pass ${KEYCLOAK_URL};
+                      #Adding for Istio compatibility
+                      proxy_ssl_server_name on;
+                      proxy_http_version 1.1;
+  }
+  location /finsec {
+                       proxy_connect_timeout       600;
+                       proxy_send_timeout          600;
+                       proxy_read_timeout          600;
+                       send_timeout                600;
+                       proxy_pass_request_headers on;
+                       rewrite /finsec/(.*) /$1  break;
+                       proxy_pass ${FINSEC_URL};
+                       #Adding for Istio compatibility
+                       proxy_ssl_server_name on;
+                       proxy_http_version 1.1;
+  }
+  location /backend {
+                         proxy_connect_timeout       600;
+                         proxy_send_timeout          600;
+                         proxy_read_timeout          600;
+                         send_timeout                600;
+                         proxy_pass_request_headers on;
+                         rewrite /backend/(.*) /$1  break;
+                         proxy_pass ${DASHBOARD_BACKEND_URL};
+                         #Adding for Istio compatibility
+                         proxy_ssl_server_name on;
+                         proxy_http_version 1.1;
+    }
+  location / {
+  try_files $uri $uri/ /index.html;
+    root  /usr/share/nginx/html;
+  }
+}

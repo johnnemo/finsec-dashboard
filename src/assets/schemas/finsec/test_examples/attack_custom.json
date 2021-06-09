@@ -1,0 +1,19 @@
+{
+  "type": "x-attack",
+  "id": "x-attack--9d9606ea-1cdf-4f8d-a331-b70c727def5d",
+  "name": "Code Injection",
+  "description": "An adversary exploits a weakness in input validation on the target to inject new code into that which is currently executing",
+  "x_organization": "x-organization--61a5108b-0e54-44b8-91c3-8e2e64ea873c",
+  "subtype": "concurrency",
+  "window": 5,
+  "domain": "Cyber",
+  "event_refs": [
+    "x-event--8c6af861-7b20-41ef-9b59-6344fd872a8f",
+    "x-event--f161afb0-9a9e-4a15-b0bd-a5f1b229303c"
+  ],
+  "datatype": "Instance",
+  "reference": "x-root--d3be1f09-88a0-4e05-b3bf-3546ee0eef2a",
+  "model_ref": "x-attack--6caeae68-2f83-4f30-95fa-367c61bb32e6",
+  "created": "2016-08-08T15:50:10.983Z",
+  "modified": "2016-08-08T15:50:10.983Z"
+}

@@ -1,0 +1,32 @@
+<br/>
+<div>
+  <button (click)="toggleForm()" nbButton status="{{buttonClass}}">{{buttonText}}</button>
+  <div *ngIf="data && formLayout && schema && create">
+    <br/>
+    <nb-alert *ngIf="prettyValidationErrors"
+         [innerHTML]="prettyValidationErrors"
+         accent="warning">
+    </nb-alert>
+
+    <nb-alert accent="success" *ngIf="success_message">
+      {{success_message}}
+    </nb-alert>
+    <br/>
+    <nb-alert class="bg-gradient-danger" *ngIf="errorMessages" accent="danger">
+      <p *ngFor="let error of errorMessages"><span class="text-danger">* </span>{{error}}</p>
+    </nb-alert>
+    <json-schema-form (isValid)="isValid($event)"
+                      (onChanges)="onChanges($event)"
+                      (onSubmit)="onSubmit($event)"
+                      (validationErrors)="validationErrors($event)"
+                      [(data)]="data"
+                      [form]="schema"
+                      [layout]="formLayout"
+                      class="row"
+                      framework="bootstrap-4"
+                      loadExternalAssets="false">
+    </json-schema-form>
+  </div>
+</div>
+
+

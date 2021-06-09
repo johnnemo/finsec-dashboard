@@ -1,0 +1,33 @@
+{
+  "type": "x-area",
+  "id": "x-area--8c6af861-7b20-41ef-9b59-6344fd872a8f",
+  "name": "Server room",
+  "description": "Computer room inside building",
+  "x_organization": "x-organization--8c6af861-7b20-41ef-9b59-6344fd872a8f",
+  "subtype": "Indoor Area",
+  "domain": "Physical",
+  "coordinates": "[25.095549, 26.482024]",
+  "area": [
+    [
+      -64.73,
+      32.31
+    ],
+    [
+      -80.19,
+      25.76
+    ],
+    [
+      -66.09,
+      18.43
+    ],
+    [
+      -64.73,
+      32.31
+    ]
+  ],
+  "datatype": "Instance",
+  "reference": "x-area--d3be1f09-88a0-4e05-b3bf-3546ee0eef2a",
+  "model_ref": "x-area--6caeae68-2f83-4f30-95fa-367c61bb32e6",
+  "created": "2016-08-08T15:50:10.983Z",
+  "modified": "2016-08-08T15:50:10.983Z"
+}

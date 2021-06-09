@@ -1,0 +1,173 @@
+{
+  "id": "../sdos/x-event.json",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "x-event",
+  "description": "Identifies an event produced by a probe.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "../../../schemas/stix2-schemas/schemas/common/core.json"
+    },
+    {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "It MUST be the literal `x-event`.",
+          "enum": [
+            "x-event"
+          ]
+        },
+        "id": {
+          "title": "id",
+          "pattern": "^x-event--"
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the event."
+        },
+        "description": {
+          "type": "string",
+          "description": "A quick descrition of the event."
+        },
+        "x_organization": {
+          "type": "string",
+          "description": "Reference to the organization which is owner of the information contained in the object.",
+          "pattern": "^x-organization--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+        },
+        "subtype": {
+          "type": "string",
+          "description": "Can be used to specify the type of event through the taxonomy used by the XL-SIEM and the Risk Analysis Engine tool."
+        },
+        "domain": {
+          "type": "string",
+          "description": "Specifies the domain of the event. It can be Cyber, Physical or Hybrid.",
+          "enum": [
+            "Cyber",
+            "Physical",
+            "Hybrid"
+          ]
+        },
+        "coordinates": {
+          "description": "Specifies the physical location of the event detected (latitude,longitude).",
+          "pattern": "^\\[.+[-+]?([1-8]?\\d(\\.\\d+)?|90(\\.0+)?),\\s*[-+]?(180(\\.0+)?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d+)?)\\]$"
+        },
+        "agent_refs": {
+          "type": "array",
+          "description": "Specifies the agents detected in the current event.",
+          "items": {
+            "type": "string",
+            "pattern": "^x-agent--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+          }
+        },
+        "observed_refs": {
+          "type": "array",
+          "description": "If datatype is Model, it is empty; otherwise it contains the references to the observed data that are related to the event.",
+          "items": {
+            "type": "string",
+            "pattern": "^observed-data--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+          }
+        },
+        "probe_ref": {
+          "type": "string",
+          "description": "If datatype is Model, it is empty; otherwise it contains the reference to the probe that generated the event.",
+          "pattern": "^x-probe--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+        },
+        "asset_refs": {
+          "type": "array",
+          "description": "If datatype is Model, it is empty; otherwise it contains the references to the assets involved in the event.",
+          "items": {
+            "type": "string",
+            "pattern": "^x-asset--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+          }
+        },
+        "datatype": {
+          "type": "string",
+          "description": "Datatype can be Model or Instance. Model indicates that the object is a model that can be used as a basis for the analytics. Instance is used when the object is generated at run-time.",
+          "enum": [
+            "Model",
+            "Instance"
+          ]
+        },
+        "reference": {
+          "type": "string",
+          "description": "If datatype is Model, it contains a reference to a generic root; otherwise, it contains the reference to the corresponding model event.",
+          "pattern": "^x-(root|event)--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+        },
+        "model_ref": {
+          "type": "string",
+          "description": "Is used by the event with datatype Instance to refer to the related model.",
+          "pattern": "^x-event--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+        },
+        "details": {
+          "type": "object",
+          "description": "The keys contained depend on the probe who generated the event.",
+          "properties": {
+            "detail_type": {
+              "type": "string",
+              "description": "The type of the detail inner object.",
+              "enum": [
+                "p2p_payment",
+                "blockchain",
+                "hybrid"
+              ]
+            },
+            "last_block": {
+              "type": "string",
+              "description": "Specifies the date/time the last block was detected.",
+              "pattern": "^[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9]|60)(\\.[0-9]+)?Z$"
+            },
+            "payer_addr": {
+              "type": "string",
+              "description": "The transaction payer address."
+            },
+            "payee_addr": {
+              "type": "string",
+              "description": "The transaction payee address."
+            },
+            "operation": {
+              "type": "string",
+              "description": "Operation Type under execution.",
+              "enum": [
+                "payment"
+              ]
+            },
+            "amount": {
+              "type": "integer",
+              "description": "The transaction amount."
+            },
+            "active_nodes": {
+              "type": "integer",
+              "description": "The active nodes associated with the transaction."
+            },
+            "num_addresses": {
+              "type": "integer",
+              "description": "The number of addresses associated with the transaction."
+            },
+            "generation_rate": {
+              "type": "integer",
+              "description": "The average block generation rate."
+            },
+            "propagation_rate": {
+              "type": "integer",
+              "description": "The propagation rate."
+            },
+            "trans_per_block": {
+              "type": "integer",
+              "description": "Number of transactions per block."
+            },
+            "type_code": {
+              "type": "string",
+              "description": "Code used by the Risk Assessment Engine to indentify the type of event."
+            }
+          }
+        }
+      }
+    }
+  ],
+  "required": [
+    "name",
+    "description",
+    "domain",
+    "datatype"
+  ]
+}

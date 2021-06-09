@@ -1,0 +1,37 @@
+{
+  "type": "x-event",
+  "id": "x-event--ecfbe86a-3f73-4ec4-83c7-a8faadd6387b",
+  "name": "Blockchain Payment",
+  "description": "A transaction is detected",
+  "x_organization": "x-organization--da691dda-cd1c-4c11-805e-d18b3d828974",
+  "subtype": "Main",
+  "domain": "Cyber",
+  "level": "event",
+  "agent_refs": [
+    "x-agent--8211aa81-0c02-4c47-af1b-4fb8c674026e",
+    "x-agent--c43bd70c-62fd-40c9-b90c-5dce92904687"
+  ],
+  "observed_refs": [
+    "observed-data--5e423e8b-5ec9-487e-9110-5163b3872925",
+    "observed-data--0c0253e3-e46f-4d4e-b229-dc9e217fe382"
+  ],
+  "probe_ref": "x-probe--d3be1f09-88a0-4e05-b3bf-3546ee0eef2a",
+  "datatype": "Instance",
+  "reference": "x-event--6310f5f1-46d8-462a-a7b3-cd5e92f20ac2",
+  "model_ref": "x-event--6310f5f1-46d8-462a-a7b3-cd5e92f20ac2",
+  "details": {
+    "detail_type": "p2p_payment",
+    "last_block": "2016-08-08T15:50:10.983Z",
+    "payer_addr": "0x123f681646d4a755815f9cb19e1acc8565a0c2ac",
+    "payee_addr": "0x123f681646d4a755815f9cb19e1acc8565a0c2ac",
+    "operation": "payment",
+    "amount": 100,
+    "active_nodes": 2,
+    "num_addresses": 3,
+    "generation_rate": 15,
+    "propagation_rate": 15,
+    "trans_per_block": 2
+  },
+  "created": "2016-08-08T15:50:10.983Z",
+  "modified": "2016-08-08T15:50:10.983Z"
+}

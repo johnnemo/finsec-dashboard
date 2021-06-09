@@ -1,0 +1,12 @@
+@import '../../../@theme/styles/themes';
+
+@include nb-install-component() {
+
+}
+
+.full-screen {
+  &.ng-star-inserted {
+    width: 1388px !important;
+    top: 40% !important;
+  }
+}

@@ -1,0 +1,219 @@
+{
+  "id": "../sdos/x-threat.json",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "x-threat",
+  "description": "Identities a possible threat.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "../../../stix2-schemas/schemas/common/core.json"
+    },
+    {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The type of this object, which MUST be the literal `x-threat`.",
+          "enum": [
+            "x-threat"
+          ]
+        },
+        "id": {
+          "title": "id",
+          "pattern": "^x-threat--"
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of this Threat. Should be a value of: threat-name-ov"
+        },
+        "description": {
+          "type": "string",
+          "description": "A description that provides more details and context about the Threat."
+        },
+        "domain": {
+          "type": "string",
+          "description": "The domain of this Threat.",
+          "enum": [
+            "Cyber",
+            "Physical"
+          ]
+        },
+        "subtype": {
+          "type": "string",
+          "description": "The type of the Threat. This should be Open vocab - threat-type-ov "
+        },
+        "x_organization": {
+          "type": "string",
+          "description": "Reference to the organization which is owner of the information contained in the object.",
+          "pattern": "^x-organization--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+        },
+        "likelihood": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "The likelyhood of an adversary to initiate the Threat."
+        },
+        "impact_level": {
+          "type": "string",
+          "description": "The impact level of a successful threat",
+          "enum": [
+            "Very Low",
+            "Low",
+            "Medium",
+            "High",
+            "Very High"
+          ]
+        },
+        "impact_description": {
+          "type": "string",
+          "description": "Provides the impact of the Threat. An example would be: Data loss and reputation impact"
+        },
+        "vulnerability_refs": {
+          "type": "array",
+          "description": "Provides the vulnerability that this Threat is targeting",
+          "items": {
+            "pattern": "^vulnerability--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+          }
+        },
+        "asset_refs": {
+          "type": "array",
+          "description": "Provides the vulnerability that this Threat is targeting",
+          "items": {
+            "pattern": "^x-asset--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+          }
+        },
+        "risk_ref": {
+          "type": "string",
+          "description": "Provides the relation to the risk object",
+          "pattern": "^x-risk--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+        },
+        "datatype": {
+          "type": "string",
+          "description": "Datatype can be model or instance. model indicates that the object is a model that can be used as a basis for the analytics. instance is used when the object is generated at run-time.  ",
+          "enum": [
+            "Model",
+            "Instance"
+          ]
+        },
+        "reference": {
+          "type": "string",
+          "description": "Reference usually refers to the object above in hierarchy. It  is used to create trees of objects",
+          "pattern": "^x-(root|threat)--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+        },
+        "model_ref": {
+          "type": "string",
+          "description": "Is used by the objects with datatype instance to refer to the related model",
+          "pattern": "^x-threat--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+        }
+      }
+    }
+  ],
+  "required": [
+    "name",
+    "description",
+    "x_organization",
+    "domain",
+    "subtype",
+    "likelihood",
+    "impact_level",
+    "impact_description",
+    "datatype",
+    "reference",
+    "model_ref"
+  ],
+  "definitions": {
+    "threat-name-ov": {
+      "type": "string",
+      "enum": [
+        "Fire",
+        "Water Damages",
+        "Industrial Disasters",
+        "Mechanical Pollution",
+        "Electromagnetic Pollution",
+        "Hardware or Software Failure",
+        "Power Interruption",
+        "Unsuitable temperature and/or moisture conditions",
+        "Communications Service Failure",
+        "Interruption of Other Services and Essential Supplies",
+        "Media Degradation",
+        "Electromagnetic Radiation",
+        "Users Errors",
+        "Administrator Errors",
+        "Monitoring (logging) Errors",
+        "Configuration Errors",
+        "Organizational Deficiencies",
+        "Malware Diffusion",
+        "[Re-]Routing Errors",
+        "Sequence Errors",
+        "Information Leaks",
+        "Information Alteration",
+        "Entry of Incorrect Information",
+        "Information Degradation",
+        "Destruction of Information",
+        "Disclosure of Information",
+        "Software Vulnerabilities",
+        "Defects in Software Maintenance/Updating",
+        "Defects in Hardware Maintenance/Updating",
+        "System Failure due to Exhaustion of Resources",
+        "Staff Shortage",
+        "Manipulation of the Configuration",
+        "Masquerading of User Identity",
+        "Abuse of Access Privileges",
+        "Misuse",
+        "Malware Diffusion",
+        "[Re-]Routing of Messages",
+        "Sequence Alteration",
+        "Unauthorized Access",
+        "Traffic Analysis",
+        "Repudiation",
+        "Eavesdropping",
+        "Alteration of Information",
+        "Entry of False Information",
+        "Corruption of Information",
+        "Destruction of Information",
+        "Disclosure of Information",
+        "Software Manipulation",
+        "Denial of Service",
+        "Theft",
+        "Destructive Attack",
+        "Enemy Over-Run",
+        "Staff Shortage",
+        "Extortion",
+        "Social Engineering",
+        "Fire",
+        "Water Damages",
+        "Other Natural Disasters",
+        "Burglary",
+        "Theft",
+        "Vandalism",
+        "Inappropriate Occupation",
+        "Aggression",
+        "Hold Up",
+        "Sabotage",
+        "Explosives carried by Suicidal Individuals",
+        "Explosives at Manned Vehicles (suicides)",
+        "Explosives at Unmanned Land Vehicles",
+        "Explosives at Unmanned Air Vehicles",
+        "Explosives at Unmanned River/Sea Vehicles",
+        "Explosives at Parked Vehicles",
+        "Explosives by Mail",
+        "Explosives Placed/Abandoned Packages",
+        "Rocket-Propelled Grenades and Mortar Attacks",
+        "Organized Armed Terrorist Attack",
+        "Massive Poisoning",
+        "Listening Devices Deployment"
+      ]
+    },
+    "threat-type-ov": {
+      "type": "string",
+      "enum": [
+        "INDUSTRIAL ORIGIN",
+        "ERRORS AND UNINTENCIONAL FAILURE",
+        "WILLFUL ATTACK",
+        "NATURAL DISASTER",
+        "ORDINARY DELINQUENCY",
+        "AGGRESSIVE AND VIOLENT CRIMES",
+        "TERRORISM AND ORGANIZED CRIME"
+      ]
+    }
+  }
+}

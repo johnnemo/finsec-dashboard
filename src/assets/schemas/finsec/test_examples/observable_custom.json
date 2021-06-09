@@ -1,0 +1,15 @@
+{
+  "type": "observed-data",
+  "id": "observed-data--52adcfb1-ccb2-4c3a-8695-9043959addff",
+  "created": "2019-07-30T11:19:10.000Z",
+  "modified": "2019-09-05T13:01:53.347Z",
+  "first_observed": "2019-07-30T11:19:10.000Z",
+  "last_observed": "2019-07-30T11:19:10.000Z",
+  "number_observed": 1,
+  "objects": {
+    "0": {
+      "type": "x-log",
+      "message": "0 - No valid user logged in via SSH"
+    }
+  }
+}

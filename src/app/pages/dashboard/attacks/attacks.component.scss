@@ -1,0 +1,60 @@
+@import '../../../@theme/styles/themes';
+
+.chart-card nb-card-header {
+  color: red !important;
+}
+
+@include nb-install-component() {
+  ngx-echarts-pie,
+  ngx-echarts-line,
+  ngx-echarts-multiple-xaxis,
+  ngx-echarts-area-stack,
+  ngx-echarts-bar-animation,
+  ngx-echarts-donut {
+    display: block;
+    height: nb-theme(card-height-medium);
+    width: 100%;
+  }
+
+  ::ng-deep .echart {
+    height: 100%;
+    width: 100%;
+  }
+  .map {
+    width: 100%;
+    height: 350px;
+    padding-top: 1vmax;
+  }
+  mapboxgl-canvas {
+    left: 0;
+  }
+  .trend {
+    font-size: 0.75rem;
+    margin: 0;
+
+    &.value {
+      color: nb-theme(color-success-default);
+    }
+
+    &.delta {
+      &.down {
+        color: nb-theme(color-danger-default);
+      }
+
+      &.up {
+        color: nb-theme(color-success-default);
+      }
+
+      nb-icon ::ng-deep svg {
+        vertical-align: top;
+      }
+    }
+  }
+
+  .pie-container {
+    margin: 0 auto;
+  }
+  .global {
+    height: auto;
+  }
+}

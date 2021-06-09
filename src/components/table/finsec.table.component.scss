@@ -1,0 +1,86 @@
+@import '../../app/@theme/styles/themes';
+
+@include nb-install-component() {
+  nb-card {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+::ng-deep {
+  ng2-smart-table {
+    table {
+      tbody {
+        /* Alternating row colour */
+        tr:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+:host ::ng-deep .nb-theme-dark ng2-smart-table .ng2-smart-actions {
+  height: auto!important;
+}
+:host ::ng-deep tr .ng2-smart-actions {
+  display: flex;
+}
+
+:host ::ng-deep tr.ng2-smart-filters.ng-star-inserted {
+   th.ng2-smart-actions-title {
+    border-bottom: none;
+  }
+}
+
+:host ::ng-deep tr.ng2-smart-titles.ng-star-inserted > th.ng2-smart-actions.ng-star-inserted {
+  border-bottom: none;
+}
+
+:host ::ng-deep nbng2-st-tbody-custom {
+  display: flex;
+}
+
+:host ::ng-deep ng2-st-tbody-edit-delete a.ng2-smart-action {
+  display: inline-block !important;
+}
+
+:host ::ng-deep ng2-st-tbody-create-cancel a.ng2-smart-action {
+  display: inline-block !important;
+}
+
+:host ::ng-deep ng2-st-tbody-custom a.ng2-smart-action.ng2-smart-action-custom-custom {
+  display: inline-block;
+  width: 80px;
+  text-align: center;
+  padding: 20px 14px;
+}
+
+
+.order-table {
+
+  thead th.ng2-smart-actions.ng-star-inserted {
+    width: 1em;
+  }
+
+  td.ng2-smart-actions {
+
+    float: right !important;
+
+    ng2-st-tbody-custom {
+      float: right;
+      width: auto;
+      display: flex;
+      margin-top: 0.5em;
+      margin-left: 1em;
+
+      a.ng2-smart-action.ng2-smart-action-custom-custom {
+        margin-right: 0.5em;
+      }
+    }
+  }
+}
+
+.nb-theme-default ng2-smart-table .ng2-smart-actions a.ng2-smart-action:not(:last-child) {
+  border-right: 0px;
+}
+

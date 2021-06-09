@@ -1,0 +1,4 @@
+[submodule "finstix-schemas"]
+	path = src/assets/schemas
+	url = https://gogs.finsec-project.eu/finsec/finstix-schemas.git
+	branch = ioannis-dev

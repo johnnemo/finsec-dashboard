@@ -1,0 +1,47 @@
+<div class="dual-list">
+  <div class="listbox">
+    <p>{{sourceName}}</p>
+    <div class="record-picker">
+      <ul (dragleave)="dragLeave()" (dragover)="allowDrop($event, available)"
+          (drop)="drop($event, confirmed)" [ngClass]="{over:available.dragOver}" [ngStyle]="{'max-height': height, 'min-height': height}">
+        <li (click)="selectItem(available.pick, item); shiftClick($event, idx, available, item)"
+            (dragend)="dragEnd(available)"
+            (dragstart)="drag($event, item, available)"
+            *ngFor="let item of available.sift; let idx=index;" [ngClass]="{selected: isItemSelected(available.pick, item)}" draggable="true"
+        ><label>{{item._name}}</label></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="buttonbox">
+    <button (click)="moveItem(available, confirmed)" [disabled]="available.pick.length === 0" class="btn btn-primary btn-block"
+            type="button"><i  aria-hidden="true" class="fa fa-arrow-right"></i></button>
+
+    <button (click)="moveAll()" [disabled]="isAllSelected(available)" class="btn btn-primary btn-block"
+            type="button"><i  aria-hidden="true" class="fa fa-arrow-right"></i><i  aria-hidden="true" class="fa fa-arrow-right"></i>
+    </button>
+
+
+    <button (click)="moveItem(confirmed, available)" [disabled]="confirmed.pick.length === 0" class="btn btn-primary btn-block"
+            type="button"><i  aria-hidden="true" class="fa fa-arrow-left"></i></button>
+
+    <button (click)="removeAll()" [disabled]="isAllSelected(confirmed)" class="btn btn-primary btn-block"
+            type="button"><i  aria-hidden="true" class="fa fa-arrow-left"></i><i  aria-hidden="true" class="fa fa-arrow-left"></i>
+    </button>
+
+  </div>
+
+  <div class="listbox">
+    <p>{{targetName}}</p>
+    <div class="record-picker">
+      <ul (dragleave)="dragLeave()" (dragover)="allowDrop($event, confirmed)"
+          (drop)="drop($event, available)" [ngClass]="{over:confirmed.dragOver}" [ngStyle]="{'max-height': height, 'min-height': height}">
+        <li (click)="selectItem(confirmed.pick, item); shiftClick($event, idx, confirmed, item)"
+            (dragend)="dragEnd(confirmed)"
+            (dragstart)="drag($event, item, confirmed)"
+            *ngFor="let item of confirmed.sift; let idx=index;" [ngClass]="{selected: isItemSelected(confirmed.pick, item)}" draggable="true"
+        ><label>{{item._name}}</label></li>
+      </ul>
+    </div>
+  </div>
+</div>

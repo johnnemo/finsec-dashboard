@@ -1,0 +1,121 @@
+{
+  "id": "../sdos/x-service.json",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "x-service",
+  "description": "Identities a service.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "../../../stix2-schemas/schemas/common/core.json"
+    },
+    {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The type of this object, which MUST be the literal `x-service`.",
+          "enum": [
+            "x-service"
+          ]
+        },
+        "id": {
+          "description": "Represents identifiers across the CTI specifications. The format consists of the name of the top-level object being identified, followed by two dashes (--), followed by a UUIDv4.",
+          "type": "string",
+          "pattern": "^x-service--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+        },
+        "subtype": {
+          "type": "string",
+          "description": "Defines the subtype of the Service.",
+          "enum": [
+            "public",
+            "private"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of this Service."
+        },
+        "description": {
+          "type": "string",
+          "description": "A quick description of the Service."
+        },
+        "x_organization": {
+          "type": "string",
+          "description": "Reference to the organization which is owner of the information contained in the object.",
+          "pattern": "^x-organization--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+        },
+        "domain": {
+          "type": "string",
+          "description": "The domain of this service.",
+          "enum": [
+            "Cyber",
+            "Physical",
+            "Hybrid"
+          ]
+        },
+        "criticality": {
+          "type": "integer",
+          "description": "The score depicting how critical this Service is for the overall system security.",
+          "minimum": 1,
+          "maximum": 10
+        },
+        "availability": {
+          "type": "boolean",
+          "description": "Provides information about the availability of a Service"
+        },
+        "datatype": {
+          "type": "string",
+          "description": "Datatype can be model or instance. model indicates that the object is a model that can be used as a basis for the analytics. instance is used when the object is generated at run-time.  ",
+          "enum": [
+            "Model",
+            "Instance"
+          ]
+        },
+        "reference": {
+          "type": "string",
+          "description": "Reference usually refers to the object above in hierarchy. It  is used to create trees of objects",
+          "pattern": "^x-(root|service|organization)--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+        },
+        "model_ref": {
+          "type": "string",
+          "description": "Is used by the objects with datatype instance to refer to the related model",
+          "pattern": "^x-service--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+        },
+        "created_by_ref": {
+          "pattern": "^[a-z0-9][a-z0-9-]+[a-z0-9]--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+          "description": "The ID of the Source object that describes who created this object."
+        },
+        "labels": {
+          "type": "array",
+          "description": "The labels property specifies a set of classifications.",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "created": {
+          "type": "string",
+          "description": "Created date of the object",
+          "pattern": "^[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9]|60)(\\.[0-9]+)?Z$"
+        },
+        "modified": {
+          "type": "string",
+          "description": "Created date of the object",
+          "pattern": "^[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9]|60)(\\.[0-9]+)?Z$"
+        },
+        "revoked": {
+          "type": "boolean",
+          "description": "The revoked property indicates whether the object has been revoked."
+        }
+      }
+    }
+  ],
+  "required": [
+    "name",
+    "type",
+    "availability",
+    "criticality",
+    "domain",
+    "subtype",
+    "datatype"
+  ]
+}

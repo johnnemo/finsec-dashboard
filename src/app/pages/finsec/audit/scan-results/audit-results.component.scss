@@ -1,0 +1,13 @@
+.detection {
+  display: flex;
+}
+
+p {
+  text-align: left;
+  font-size: smaller;
+  margin-bottom: 5px;
+
+  & > span {
+    color: #5585F5;
+  }
+}

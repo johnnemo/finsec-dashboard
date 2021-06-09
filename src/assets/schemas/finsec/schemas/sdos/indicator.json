@@ -1,0 +1,21 @@
+{
+  "id": "../sdos/indicator.json",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "x-indicator",
+  "description": "An indicator contains a pattern that can be used to detect suspicious or malicious cyber or physical activity. It may identify an event, a tool, malware, an intrusion set, a campaign, a threat actor or just observed data.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "../../../stix2-schemas/schemas/sdos/indicator.json"
+    },
+    {
+      "properties": {
+        "x_organization": {
+          "type": "string",
+          "description": "Reference to the organization which is owner of the information contained in the object.",
+          "pattern": "^x-organization--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+        }
+      }
+    }
+  ]
+}

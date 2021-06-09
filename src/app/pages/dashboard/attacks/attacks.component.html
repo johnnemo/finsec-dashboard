@@ -1,0 +1,32 @@
+<nb-card size="small">
+  <nb-card-header>Attacks (current month)</nb-card-header>
+  <nb-card-body>
+    <div class="row text-center">
+      <div *ngFor="let option of options" class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <p>{{option.organization_name}}</p>
+
+        <div class="pie-container" style="width:150px;height:150px;">
+          <div [options]="option" class="echart" echarts id="attack--{{option.organization_name}}"></div>
+        </div>
+        <p [ngClass]="option.trend>0 ? 'down' : 'up'" class="trend delta value">
+          <nb-icon [icon]="option.trend >0 ? 'arrow-up' : 'arrow-down'" pack="eva"></nb-icon>
+          {{option.trend}}%
+          <br/>
+          since last month
+        </p>
+        <br/>
+        <!--<div echarts [options]="options_bar_animation" class="echart"></div>-->
+      </div>
+
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pull-right">
+        <div *ngFor="let attack of attacks | keyvalue">
+          <p class="font-size-0 text-uppercase text-left">{{attack.key}} </p>
+          <nb-progress-bar [status]="status(attack.value)" [value]="(attack.value/attack_count)*100"
+                           size="small">
+          </nb-progress-bar>
+          <br/>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

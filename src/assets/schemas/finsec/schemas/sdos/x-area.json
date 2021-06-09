@@ -1,0 +1,153 @@
+{
+  "id": "../sdos/x-area.json",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "x-area",
+  "description": "Identifies an area of interest.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "../../../stix2-schemas/schemas/common/core.json"
+    },
+    {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "It MUST be the literal `x-area`.",
+          "enum": [
+            "x-area"
+          ]
+        },
+        "id": {
+          "title": "id",
+          "pattern": "^x-area--"
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the area of interest. Should be a value of: area-name-ov."
+        },
+        "description": {
+          "type": "string",
+          "description": "A description that provides more details and context about the area of interest."
+        },
+		"domain": {
+          "type": "string",
+          "description": "The domain the asset belongs to. It can be Cyber, Physical or Hybrid.",
+          "enum": [
+            "Cyber",
+            "Physical",
+            "Hybrid"
+          ]
+          },
+        "datatype": {
+          "type": "string",
+          "description": "Datatype can be Model or Instance. Model indicates that the object is a model that can be used as a basis for the analytics. Instance is used when the object is generated at run-time.",
+          "enum": [
+            "Model",
+            "Instance"
+          ]
+        },
+        "x_organization": {
+          "type": "string",
+          "description": "Reference to the organization which is owner of the information contained in the object.",
+          "pattern": "^x-organization--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+        },
+        "reference": {
+          "type": "string",
+          "description": "Reference to the area of interest/organization the area of interest is part of.",
+          "pattern": "^x-(area|organization)--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+        },
+        "model_ref": {
+          "type": "string",
+          "description": "Is used by the area of interest with datatype instance to refer to the related model.",
+          "pattern": "^x-area--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+        },
+        "subtype": {
+          "type": "string",
+          "description": "Provides the type of an area of interest. Values should be of type area-type-ov."
+        },
+        "coordinates": {
+          "description": "Specifies the physical location of the certer of the area of interest (latitude,longitude).",
+          "pattern": "^\\[.+[-+]?([1-8]?\\d(\\.\\d+)?|90(\\.0+)?),\\s*[-+]?(180(\\.0+)?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d+)?)\\]$"
+        },
+        "area": {
+          "description": "One geometry as defined by GeoJSON.",
+          "type": "array",
+          "items": {
+            "pattern": "^\\[.+[-+]?([1-8]?\\d(\\.\\d+)?|90(\\.0+)?),\\s*[-+]?(180(\\.0+)?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d+)?)\\]$"
+          }
+        }
+      }
+    }
+  ],
+  "required": [
+    "name",
+    "description",
+    "coordinates",
+    "domain",
+    "subtype",
+    "datatype",
+    "reference",
+    "model_ref",
+    "x_organization"
+  ],
+  "definitions": {
+    "area-type-ov": {
+      "type": "string",
+      "enum": [
+        "Indoor Area",
+        "Space Border",
+        "Sub Area"
+      ]
+    },
+    "position": {
+      "description": "A single position",
+      "type": "array",
+      "minItems": 2,
+      "items": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        }
+      ],
+      "additionalItems": false
+    },
+    "positionArray": {
+      "description": "An array of positions",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/position"
+      }
+    },
+    "lineString": {
+      "description": "An array of two or more positions",
+      "allOf": [
+        {
+          "$ref": "#/definitions/positionArray"
+        },
+        {
+          "minItems": 2
+        }
+      ]
+    },
+    "linearRing": {
+      "description": "An array of four positions where the first equals the last",
+      "allOf": [
+        {
+          "$ref": "#/definitions/positionArray"
+        },
+        {
+          "minItems": 4
+        }
+      ]
+    },
+    "polygon": {
+      "description": "An array of linear rings",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/linearRing"
+      }
+    }
+  }
+}

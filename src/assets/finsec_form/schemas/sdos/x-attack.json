@@ -1,0 +1,99 @@
+{
+  "id": "../sdos/x-attack.json",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "x-attack",
+  "description": "An attack defines a sequence of events that is proven to be part of an attack.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "../../../stix2-schemas/schemas/common/core.json"
+    },
+    {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The type of this object, which MUST be the literal `x-attack`.",
+          "enum": [
+            "x-attack"
+          ]
+        },
+        "id": {
+          "title": "id",
+          "pattern": "^x-attack--"
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of this attack if applicable"
+        },
+        "description": {
+          "type": "string",
+          "description": "A short description for the attack"
+        },
+        "subtype": {
+          "type": "string",
+          "description": "The subtype of the attack detected",
+          "enum": [
+            "sequence",
+            "concurrency",
+            "parallel"
+          ]
+        },
+        "domain": {
+          "type": "string",
+          "description": "The domain of the attack detected, e.g., cyber or physical.",
+          "enum": [
+            "Cyber",
+            "Physical"
+          ]
+        },
+        "window": {
+          "type": "number",
+          "description": "The time window in seconds that events are considered concurrent",
+          "minimum": 0
+        },
+        "event_refs": {
+          "type": "array",
+          "description": "Specifies the events that lead to the attack detection.",
+          "items": {
+            "pattern": "^x-event--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+          }
+        },
+        "x_organization": {
+          "type": "string",
+          "description": "Provides the Organization that the attack was detected",
+          "pattern": "^x-organization--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+        },
+        "datatype": {
+          "type": "string",
+          "description": "Datatype can be model or instance. model indicates that the object is a model that can be used as a basis for the analytics. instance is used when the object is generated at run-time.  ",
+          "enum": [
+            "Model",
+            "Instance"
+          ]
+        },
+        "reference": {
+          "type": "string",
+          "description": "Reference usually refers to the object above in hierarchy. It  is used to create trees of objects",
+          "pattern": "^x-[a-z0-9][a-z0-9-]+[a-z0-9]--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+        },
+        "model_ref": {
+          "type": "string",
+          "description": "Is used by the objects with datatype instance to refer to the related model",
+          "pattern": "^x-attack--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+        }
+      }
+    }
+  ],
+  "required": [
+    "name",
+    "subtype",
+    "domain",
+    "datatype",
+    "model_ref",
+    "reference",
+    "subtype",
+    "x_organization",
+    "window",
+    "event_refs"
+  ]
+}

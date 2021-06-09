@@ -1,0 +1,6 @@
+<div *ngFor="let field of fields" class="target-details">
+  <p><span class="title">{{field | titlecase }}:</span> {{item[field] | json}} </p>
+</div>
+<div class="text-right">
+  <button class="text-right" *ngIf="blockchain_object" (click)="share()" nbButton>Share Object</button>
+</div>

@@ -1,0 +1,26 @@
+@import '../../../@theme/styles/themes';
+
+.chart-card nb-card-header {
+  color: red !important;
+}
+
+@include nb-install-component() {
+  ngx-echarts-pie,
+  ngx-echarts-line,
+  ngx-echarts-multiple-xaxis,
+  ngx-echarts-area-stack,
+  ngx-echarts-bar-animation,
+  ngx-echarts-donut {
+    display: block;
+    height: nb-theme(card-height-medium);
+    width: 100%;
+  }
+
+  ::ng-deep .echart {
+    height: 250px;
+    width: 100%;
+  }
+  .global {
+    height: auto;
+  }
+}

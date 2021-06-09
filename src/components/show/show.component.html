@@ -1,0 +1,3 @@
+<div *ngFor="let field of item | keyvalue" class="target-details">
+  <p><span class="title">{{field.key}}:</span> {{field.value | json}} </p>
+</div>
